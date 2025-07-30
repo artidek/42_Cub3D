@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:39:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/07/29 21:46:37 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/07/30 21:22:05 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,53 @@ int	arr_len(char **arr)
 	while (arr && arr[len])
 		len++;
 	return (len);
+}
+
+void	add_to_str(char **str_add, int size, char *str)
+{
+	char	*temp;
+	char	*temp_str;
+
+	temp = NULL;
+	if (!*str_add)
+	{
+		*str_add = malloc(sizeof(char) * size + 1);
+		ft_strlcpy(*str_add, str, size + 1);
+		return ;
+	}
+	temp = ft_strdup(*str_add);
+	free(*str_add);
+	temp_str = malloc(sizeof(char) * size + 1);
+	ft_strlcpy(temp_str, str, size + 1);
+	*str_add = ft_strjoin(temp, temp_str);
+	free(temp_str);
+	free(temp);
+}
+
+void skip_char(char *str, int *i, char c)
+{
+	while (str[*i] && str[*i] != c)
+		(*i)++;
+}
+
+long long int	ft_atoil(const char *str)
+{
+	long long int	i;
+	long long int	sign;
+
+	i = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		sign = 44 - *str;
+		str++;
+	}
+	while (*str >= 48 && *str <= 57)
+	{
+		i = i * 10 + (*str - 48);
+		str++;
+	}
+	return (i * sign);
 }
