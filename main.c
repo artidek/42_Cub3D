@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/07/29 21:35:25 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/09 21:31:51 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_configs(&md, argv[1]))
 	{
-		free_data(md);
+		destroy_main_data(&md);
 		return(1);
 	}
-	if (!start_window(&md))
-	{
-		free_data(md);
-		return (1);
-	}
-	start_maze(md);
-	free_data(md);
+	// if (!start_window(&md))
+	// {
+	// 	free_data(md);
+	// 	return (1);
+	// }
+	// start_maze(md);
+	destroy_main_data(&md);
 	return (0);
 }

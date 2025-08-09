@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:35:52 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/07/30 21:34:00 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/09 21:25:28 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_number(char *str)
 
 int	is_colors(char **colors)
 {
-	int	i;
+	int				i;
 	long long int	color;
 
 	i = 0;
@@ -44,16 +44,19 @@ int	is_colors(char **colors)
 
 int	is_config(char *str)
 {
-	int	len;
+	int	len_str;
+	int	len_conf;
 	int	i;
+	char	**conf;
 
-	len = ft_strlen(str);
+	len_str = ft_strlen(str);
 	i = 0;
-	while (CONFIGS[i])
+	conf = CONFIGS;
+	while (conf[i])
 	{
-		if (len == ft_strlen(CONFIGS[i]) && ft_strncmp(str, CONFIGS[i],
-				len) == 0)
-				return (1);
+		len_conf = ft_strlen(conf[i]);
+		if (len_str == len_conf && ft_strncmp(str, conf[i], len_str) == 0)
+			return (1);
 		i++;
 	}
 	return (0);

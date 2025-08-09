@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/07/30 21:22:37 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/09 21:32:41 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@
 
 # define M_PI 3.14159265358979323846
 # define MAP_SYMB "NWSE01 "
-static const char		*CONFIGS[] = {"NO", "SO", "EA", "WE", "F", "C", NULL};
+# define CONFIGS                                \
+	(char *[])                                 \
+	{                                          \
+		"NO", "SO", "EA", "WE", "F", "C", NULL \
+	}
 
 typedef struct s_window
 {
@@ -39,18 +43,28 @@ typedef struct s_window
 
 typedef struct s_map
 {
-	int					cols_len;
 	char				*cols;
 	struct s_map		*up;
 	struct s_map		*down;
 }						t_map;
 
+typedef struct s_texture
+{
+	enum
+	{
+		NO,
+		SO,
+		EA,
+		WE
+	} type;
+	int					width;
+	int					height;
+	int					**text_arr;
+}						t_texture;
+
 typedef struct s_configs
 {
-	int					*n_text;
-	int					*s_text;
-	int					*e_text;
-	int					*w_text;
+	struct s_texture	textures[4];
 	int					floor_color[3];
 	int					ceiling_color[3];
 }						t_configs;
@@ -66,9 +80,24 @@ int						init_configs(t_main_data *md, char *conf_path);
 int						arr_len(char **arr);
 int						is_map_symb(char symb);
 int						is_config(char *str);
+int						check_line(char *line, t_main_data *md);
+int						valid_texture(int fd);
+int						is_colors(char **colors);
+int						valid_path(char *path);
+int						check_ext(char *file, char *ext);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
 void					skip_char(char *str, int *i, char c);
+void					skip_line(int fd, int num_lines);
+void					get_size(int fd, int *width, int *height);
+void					add_node(t_map **map, t_map *node);
+void					add_texture(t_main_data *md, char *path, int texture);
+void					add_color(char *type, char *color, t_main_data *md);
+void					free_int_arr(int **arr, int height);
+void					free_map(t_map *map);
+void					destroy_main_data(t_main_data *md);
 long long int			ft_atoil(const char *str);
+int						**init_text_arr(int fd, int width, int height);
+t_map					*new_node(char *cols);
 
 #endif

@@ -8,8 +8,8 @@ GNLPATH = ./get_next_line
 PRINTFPATH = ./libft/ft_printf
 MLXPATH = ./minilibx
 
-SRCS = $(SRCSPATH)/init_conf.c 
-UTILS = $(UTILSPATH)/conf_helpers.c $(UTILSPATH)/gen_helpers.c 
+SRCS = $(SRCSPATH)/init_conf.c $(SRCSPATH)/conf_checkers.c
+UTILS = $(UTILSPATH)/conf_helpers.c $(UTILSPATH)/gen_helpers.c $(UTILSPATH)/data_destroyers.c $(UTILSPATH)/data_initializers.c $(UTILSPATH)/data_helpers.c
 GNL = $(GNLPATH)/get_next_line.c $(GNLPATH)/get_next_line_utils.c
 
 PRINTFA = $(PRINTFPATH)/libftprintf.a
