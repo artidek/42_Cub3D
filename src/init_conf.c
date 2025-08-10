@@ -6,13 +6,32 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 21:29:11 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/10 20:43:07 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void init_data(t_main_data *md)
+static int	invalid_config(t_main_data *md)
+{
+	if (!md->conf.textures[0].text_arr)
+		return (1);
+	if (!md->conf.textures[1].text_arr)
+		return (1);
+	if (!md->conf.textures[2].text_arr)
+		return (1);
+	if (!md->conf.textures[3].text_arr)
+		return (1);
+	if (md->conf.floor_color[0] == -1)
+		return (1);
+	if (md->conf.ceiling_color[0] == -1)
+		return (1);
+	if (!md->map)
+		return (1);
+	return (0);
+}
+
+static void	init_data(t_main_data *md)
 {
 	md->wind.bpp = -1;
 	md->wind.data = NULL;
@@ -30,28 +49,26 @@ static void init_data(t_main_data *md)
 	md->map = NULL;
 }
 
-static void read_file(t_main_data *md, int fd)
+static void	read_file(t_main_data *md, int fd)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(fd);
 	if (!line)
-		return;
+		return ;
 	while (line)
 	{
-		if (ft_strncmp(line, "\n", ft_strlen(line)) != 0)
-		{
-			if (!check_line(line, md))
+			if (!check_line(line, md, fd))
 			{
-				close(fd);
-				return;
+				free(line);
+				return ;
 			}
-		}
+		free(line);
 		line = get_next_line(fd);
 	}
 }
 
-int init_configs(t_main_data *md, char *conf_path)
+int	init_configs(t_main_data *md, char *conf_path)
 {
 	int fd;
 
@@ -63,11 +80,11 @@ int init_configs(t_main_data *md, char *conf_path)
 		return (0);
 	}
 	read_file(md, fd);
-	// if (!check_data(md))
-	// {
-	// 	ft_printf("invalid configuration\n");
-	// 	return (0);
-	// }
+	if (invalid_config(md))
+	{
+		ft_printf("invalid config\n");
+		return(0);
+	}
 	// if (!check_map(md))
 	// {
 	// 	ft_printf("invalid map\n");

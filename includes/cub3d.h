@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 21:32:41 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/10 20:24:15 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_configs
 
 typedef struct s_main_data
 {
+	char				*pwd;
 	struct s_window		wind;
 	struct s_configs	conf;
 	struct s_map		*map;
@@ -80,11 +81,12 @@ int						init_configs(t_main_data *md, char *conf_path);
 int						arr_len(char **arr);
 int						is_map_symb(char symb);
 int						is_config(char *str);
-int						check_line(char *line, t_main_data *md);
-int						valid_texture(int fd);
+int						check_line(char *line, t_main_data *md, int fd);
+int						valid_texture(int fd, int width, int height);
 int						is_colors(char **colors);
-int						valid_path(char *path);
+int						valid_path(char *path, char *dir);
 int						check_ext(char *file, char *ext);
+int						check_row(char *row);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
 void					skip_char(char *str, int *i, char c);

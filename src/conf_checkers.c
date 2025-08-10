@@ -6,11 +6,40 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 21:41:40 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/10 20:35:50 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static int	is_map(char *line, int fd, t_main_data *md)
+{
+	char *row;
+
+	line[ft_strlen(line) - 1] = 0;
+	if (!check_row(line))
+		return (0);
+	add_node(&(md->map), new_node(line));
+	row = get_next_line(fd);
+	if (!row)
+		return (0);
+	while(row && row[0] != '\n')
+	{
+		row[ft_strlen(row) - 1] = 0;
+		if (check_row(row))
+			add_node(&(md->map), new_node(row));
+		else
+		{
+			free(row);
+			return (0);
+		}
+		free(row);
+		row = get_next_line(fd);	
+	}
+	if (row)
+		free(row);
+	return (1);
+}
 
 static int	is_text(char *str)
 {
@@ -25,7 +54,7 @@ static int	is_text(char *str)
 	conf = CONFIGS;
 	while (i < 4)
 	{
-		if (len == 2 && ft_strncmp(str, conf[i], 2))
+		if (len == 2 && ft_strncmp(str, conf[i], 2) == 0)
 		{
 			texture = i;
 			return (texture);
@@ -60,12 +89,16 @@ static int	is_f_c(char *str, char *line, t_main_data *md)
 	return (1);
 }
 
-static int	is_conf(char *str, char *line, t_main_data *md)
+static int	is_conf(char *str, char *line, t_main_data *md, int fd)
 {
 	int	len;
 	int texture;
 
-	len = ft_strlen(str);
+	len = 0;
+	if (line[0] == '\n')
+		return (1);
+	if (str)
+		len = ft_strlen(str);
 	if (len == 1 && is_f_c(str, line, md))
 		return (1);
 	if (len == 2)
@@ -77,12 +110,12 @@ static int	is_conf(char *str, char *line, t_main_data *md)
 			return (1);
 		}
 	}
-	// if (len > 2 && is_map(str, line))
-	// 	return (1);
+	if (is_map(line, fd, md))
+		return (1);
 	return (0);
 }
 
-int	check_line(char *line, t_main_data *md)
+int	check_line(char *line, t_main_data *md, int fd)
 {
 	int i;
 	char *check;
@@ -98,7 +131,7 @@ int	check_line(char *line, t_main_data *md)
 		add_to_str(&check, 1, &line[i]);
 		i++;
 	}
-	if (!is_conf(check, line, md))
+	if (!is_conf(check, line, md, fd))
 	{
 		free(check);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:52:19 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 19:43:53 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/10 19:38:37 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	destroy_main_data(t_main_data *md)
 	}
 	if (md->map)
 		free_map(md->map);
+	free(md->pwd);
 }
 
 void	free_int_arr(int **arr, int height)

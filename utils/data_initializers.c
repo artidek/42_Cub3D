@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 21:00:21 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/10 19:23:45 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	add_node(t_map **map, t_map *node)
 		*map = node;
 		return ;
 	}
+	temp = *map;
 	while (temp->down)
 		temp = temp->down;
 	node->up = temp;
@@ -42,17 +43,17 @@ void	add_node(t_map **map, t_map *node)
 
 void	add_texture(t_main_data *md, char *path, int texture)
 {
-	int fd;
-	int width;
-	int height;
+	int	fd;
+	int	width;
+	int	height;
 
-	fd = valid_path(path);
+	fd = valid_path(path, md->pwd);
 	if (fd < 0)
-		return;
-	if (!valid_texture(fd))
-		return;
-	skip_line(fd, 3);
+		return ;
+	skip_line(fd, 2);
 	get_size(fd, &width, &height);
+	if (!valid_texture(fd, width, height))
+		return ;
 	md->conf.textures[texture].text_arr = init_text_arr(fd, width, height);
 	md->conf.textures[texture].type = texture;
 	md->conf.textures[texture].width = width;
@@ -62,20 +63,28 @@ void	add_texture(t_main_data *md, char *path, int texture)
 
 void	add_color(char *type, char *color, t_main_data *md)
 {
-	char	**splited;
+	int i;
+	int j;
+	char *color_val;
 
-	splited = ft_split(color, ',');
-	if (ft_strncmp(type, "F", 1))
+	i = 0;
+	j = 0;
+	color_val = NULL;
+	while (color[i])
 	{
-		md->conf.floor_color[0] = ft_atoi(splited[0]);
-		md->conf.floor_color[1] = ft_atoi(splited[1]);
-		md->conf.floor_color[2] = ft_atoi(splited[2]);
+		if (ft_isdigit(color[i]))
+		{
+			add_to_str(&color_val, 3, &color[i]);
+			if (type[0] == 'F')
+				md->conf.floor_color[j] = ft_atoi(color_val);
+			if (type[0] == 'C')
+				md->conf.ceiling_color[j] = ft_atoi(color_val);
+			j++;
+			free(color_val);
+			color_val = NULL;
+			i += 2;
+		}
+		if (color[i])
+			i++;
 	}
-	if (ft_strncmp(type, "C", 1))
-	{
-		md->conf.ceiling_color[0] = ft_atoi(splited[0]);
-		md->conf.ceiling_color[1] = ft_atoi(splited[1]);
-		md->conf.ceiling_color[2] = ft_atoi(splited[2]);
-	}
-	free_arr(splited);
 }
