@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/10 20:43:07 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 08:48:32 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int	init_configs(t_main_data *md, char *conf_path)
 		ft_printf("invalid config\n");
 		return(0);
 	}
-	// if (!check_map(md))
-	// {
-	// 	ft_printf("invalid map\n");
-	// 	return (0);
-	// }
+	if (!check_map(md))
+	{
+		ft_printf("invalid map\n");
+		return (0);
+	}
 	close(fd);
 	return (1);
 }

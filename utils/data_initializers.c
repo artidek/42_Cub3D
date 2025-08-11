@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/10 19:23:45 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 09:27:16 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 t_map	*new_node(char *cols)
 {
 	t_map	*node;
+	int	cols_count;
 
+	if (!cols)
+		return (NULL);
+	cols_count = ft_strlen(cols);
 	node = malloc(sizeof(t_map));
 	if (!node)
 		return (NULL);
+	node->row_index = 0;
+	node->num_cols = cols_count;
 	node->up = NULL;
 	node->down = NULL;
 	node->cols = ft_strdup(cols);
@@ -32,11 +38,13 @@ void	add_node(t_map **map, t_map *node)
 	if (!*map)
 	{
 		*map = node;
+		(*map)->row_index += 1;
 		return ;
 	}
 	temp = *map;
 	while (temp->down)
 		temp = temp->down;
+	node->row_index = temp->row_index + 1;
 	node->up = temp;
 	temp->down = node;
 }
