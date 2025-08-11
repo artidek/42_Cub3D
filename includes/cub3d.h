@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/11 13:34:49 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 20:00:15 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@
 	{                                          \
 		"NO", "SO", "EA", "WE", "F", "C", NULL \
 	}
+# define HEIGHT 1064
+# define WIDTH 960
+# define KEYS        \
+	enum            \
+	{               \
+		W 119,      \
+		S 115,      \
+		A 97,       \
+		D 100,      \
+		LEFT 65361, \
+		RIGHT 65363 \
+	} keys;
 
 typedef struct s_window
 {
@@ -71,12 +83,22 @@ typedef struct s_configs
 	int					ceiling_color[3];
 }						t_configs;
 
+typedef struct s_pos
+{
+	char				orientation;
+	int					x;
+	int					y;
+	t_map				*row;
+	int					col;
+}						t_pos;
+
 typedef struct s_main_data
 {
 	char				*pwd;
 	struct s_window		wind;
 	struct s_configs	conf;
 	struct s_map		*map;
+	struct s_pos		position;
 }						t_main_data;
 
 int						init_configs(t_main_data *md, char *conf_path);
@@ -91,8 +113,10 @@ int						check_ext(char *file, char *ext);
 int						check_row(char *row);
 int						check_map(t_main_data *md);
 int						valid_border(t_map *map, int i);
-int						locate_player(t_map *map, t_map **y, int *x, char *player);
+int						locate_player(t_map *map, t_map **y, int *x,
+							char *player);
 int						no_path(t_map *y);
+int						start_window(t_main_data *md);
 void					parse_path(t_map *y, int x);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
@@ -105,6 +129,7 @@ void					add_color(char *type, char *color, t_main_data *md);
 void					free_int_arr(int **arr, int height);
 void					free_map(t_map *map);
 void					destroy_main_data(t_main_data *md);
+void					destroy_window(t_window wind);
 long long int			ft_atoil(const char *str);
 int						**init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);

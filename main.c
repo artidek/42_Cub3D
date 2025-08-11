@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/11 13:01:57 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 19:45:38 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ int	main(int argc, char **argv, char **env)
 		printf("%s\n", temp->cols);
 		temp = temp->down;
 	}
-	// if (!start_window(&md))
-	// {
-	// 	free_data(md);
-	// 	return (1);
-	// }
+	printf("col %s\n", md.position.row->cols);
+	if (!start_window(&md))
+	{
+		ft_printf("failed to start window\n");
+		destroy_main_data(&md);
+		return (1);
+	}
 	// start_maze(md);
 	destroy_main_data(&md);
 	return (0);

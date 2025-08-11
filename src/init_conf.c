@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/11 08:48:32 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 18:58:08 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	init_data(t_main_data *md)
 	md->conf.floor_color[0] = -1;
 	md->conf.ceiling_color[0] = -1;
 	md->map = NULL;
+	md->position.x = 0;
+	md->position.y = 0;
 }
 
 static void	read_file(t_main_data *md, int fd)
