@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/11 10:11:09 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:34:49 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ int						check_ext(char *file, char *ext);
 int						check_row(char *row);
 int						check_map(t_main_data *md);
 int						valid_border(t_map *map, int i);
+int						locate_player(t_map *map, t_map **y, int *x, char *player);
+int						no_path(t_map *y);
+void					parse_path(t_map *y, int x);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
 void					skip_char(char *str, int *i, char c);

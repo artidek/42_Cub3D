@@ -1,5 +1,28 @@
 #include "../includes/cub3d.h"
 
+static int	path(t_map *map)
+{
+	t_map *y;
+	int	x;
+	char player;
+
+	if (!locate_player(map, &y, &x, &player))
+	{
+		ft_printf("Unable locate player\n");
+		return (0);
+	}
+	parse_path(y, x);
+	y->cols[x] = player;
+	while(y->up)
+		y = y->up;
+	if (no_path(y))
+	{
+		ft_printf("No valid path, or one fo the path invalid\n");
+		return (0);
+	}
+	return (1);
+}
+
 static int	check_walls(t_map *map)
 {
 	int	i;
@@ -11,8 +34,11 @@ static int	check_walls(t_map *map)
 		i = 0;
 		while (temp->cols[i])
 		{
-			if (!valid_border(temp, i))
-				return (0);
+			if (temp->cols[i] != ' ')
+			{
+				if(!valid_border(temp, i))
+					return (0);
+			}
 			i++;
 		}
 		temp = temp->down;
@@ -24,7 +50,12 @@ int	check_map(t_main_data *md)
 {
 	if (!check_walls(md->map))
 	{
-		printf("cub3d map parser: unclosed walls\n");
+		ft_printf("cub3d map parser: unclosed walls\n");
+		return (0);
+	}
+	if (!path(md->map))
+	{
+		ft_printf("cub3d map parser: path validation failed\n");
 		return (0);
 	}
 	return (1);

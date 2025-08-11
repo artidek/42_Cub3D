@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/10 20:38:44 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:01:57 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ int	main(int argc, char **argv, char **env)
 	{
 		destroy_main_data(&md);
 		return(1);
+	}
+	t_map *temp = md.map;
+	while(temp)
+	{
+		printf("%s\n", temp->cols);
+		temp = temp->down;
 	}
 	// if (!start_window(&md))
 	// {
