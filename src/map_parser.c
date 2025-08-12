@@ -51,6 +51,8 @@ static int	check_walls(t_map *map)
 
 int	check_map(t_main_data *md)
 {
+	t_map *temp;
+
 	if (!check_walls(md->map))
 	{
 		ft_printf("cub3d map parser: unclosed walls\n");
@@ -61,5 +63,10 @@ int	check_map(t_main_data *md)
 		ft_printf("cub3d map parser: path validation failed\n");
 		return (0);
 	}
+	md->grid_cell[0] = WIDTH / md->map->num_cols;
+	temp = md->map;
+	while(temp->down)
+		temp = temp->down;
+	md->grid_cell[1] = HEIGHT / (temp->row_index);
 	return (1);
 }

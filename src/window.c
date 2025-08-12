@@ -6,17 +6,26 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/11 20:18:37 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:34:06 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	keys(int key_code, t_main_data *md)
+static int	get_keys(int key_code, t_main_data *md)
 {
 	if (key_code == 65307)
 		mlx_loop_end(md->wind.mlx);
-	//render(key_code, md);
+	else if (key_code == A || key_code == S || key_code == W || key_code == D)
+	{
+		orientation(key_code, md);
+		move(key_code, md);
+	}
+	else if (key_code == LEFT || key_code == RIGHT)
+	{
+		orientation(key_code, md);
+		redisplay(md);
+	}
 	return (0);
 }
 
@@ -31,9 +40,14 @@ int	start_window(t_main_data *md)
 	md->wind.mlx = mlx_init();
 	if (!md->wind.mlx)
 		return (0);
-	md->wind.win = mlx_new_window(md->wind.mlx, HEIGHT, WIDTH, "cub3d");
-	md->wind.img = mlx_new_image(md->wind.mlx, HEIGHT, WIDTH);
-	mlx_key_hook(md->wind.win, keys, md->wind.mlx);
+	md->wind.win = mlx_new_window(md->wind.mlx, WIDTH, HEIGHT, "cub3d");
+	md->wind.img = mlx_new_image(md->wind.mlx, WIDTH, HEIGHT);
+	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp, &md->wind.line_size, &md->wind.endian);
+	md->position.x = md->grid_cell[0] * md->position.col + md->position.x;
+	md->position.y = md->grid_cell[1] * md->position.row->row_index + md->position.y;
+	redisplay(md);
+	mlx_put_image_to_window(md->wind.mlx, md->wind.win, md->wind.img,0,0);
+	mlx_key_hook(md->wind.win, get_keys, md);
 	mlx_hook(md->wind.win, 33, 0, close_msg, md->wind.mlx);
 	mlx_loop(md->wind.mlx);
 	return (1);
