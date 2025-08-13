@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 13:53:57 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:45:16 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ typedef struct s_configs
 typedef struct s_pos
 {
 	char				orientation;
-	int					x;
-	int					y;
+	float				pa;
+	float				x;
+	float				y;
 	t_map				*row;
 	int					col;
 }						t_pos;
@@ -95,8 +96,12 @@ typedef struct s_pos
 typedef struct s_main_data
 {
 	char				*pwd;
-	int					grid_pos[2];
-	int					grid_cell[2];
+	int					front_col;
+	int					back_col;
+	int					left_col;
+	int					right_col;
+	int					turn_key;
+	float				grid_cell[2];
 	struct s_window		wind;
 	struct s_configs	conf;
 	struct s_map		*map;
@@ -119,6 +124,11 @@ int						locate_player(t_map *map, t_map **y, int *x,
 							char *player);
 int						no_path(t_map *y);
 int						start_window(t_main_data *md);
+int						front_collision(t_main_data *md, float c_y);
+int						back_collision(t_main_data *md, float c_y);
+int						left_collision(t_main_data *md, float c_x);
+int						right_collision(t_main_data *md, float c_x);
+float					get_x(t_main_data *md, int key);
 void					parse_path(t_map *y, int x);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
@@ -136,7 +146,12 @@ void					draw_map(t_main_data *md);
 void					move(int key_code, t_main_data *md);
 void					orientation(int key_code, t_main_data *md);
 void					redisplay(t_main_data *md);
-void					render(int x, int y, t_main_data *md, char type);
+void					render(int x, int y, t_main_data *md, int col[2]);
+void					set_initial_orientation(t_main_data *md);
+void					move_up(t_main_data *md);
+void					move_down(t_main_data *md);
+void					move_left(t_main_data *md);
+void					move_right(t_main_data *md);
 long long int			ft_atoil(const char *str);
 int						**init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);

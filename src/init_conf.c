@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 10:40:41 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:59:55 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ static void	init_data(t_main_data *md)
 	md->map = NULL;
 	md->position.x = 0;
 	md->position.y = 0;
+	md->turn_key = 0;
+	md->front_col = 0;
+	md->back_col = 0;
+	md->left_col = 0;
+	md->right_col = 0;
 }
 
 static void	read_file(t_main_data *md, int fd)

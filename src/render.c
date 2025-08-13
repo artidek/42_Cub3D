@@ -6,27 +6,24 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:04:22 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 15:53:43 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:38:47 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static unsigned int	color(int r, int g, int b)
+static unsigned int	color(int color[2])
 {
-	return ((r << 16) | (g << 8) | b);
+	return ((color[0] << 16) | (color[1] << 8) | color[2]);
 }
 
-void	render(int x, int y, t_main_data *md, char type)
+void	render(int x, int y, t_main_data *md, int col[2])
 {
 	unsigned int	rgb;
 	int	pix_addr;
 
 	pix_addr = (y * md->wind.line_size) + (x * (md->wind.bpp/8));
-	if (type == 'P')
-		rgb = color(md->conf.ceiling_color[0], md->conf.ceiling_color[1], md->conf.ceiling_color[2]);
-	if (type == 'W')
-		rgb = color(md->conf.floor_color[0], md->conf.floor_color[1], md->conf.floor_color[2]);
+	rgb = color(col);
 	md->wind.data[pix_addr] = rgb & 0xFF;
 	md->wind.data[pix_addr + 1] = (rgb >> 8) & 0xFF;
 	md->wind.data[pix_addr + 2] = (rgb >> 16) & 0xFF;

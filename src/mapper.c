@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:10:06 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 14:53:46 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:37:17 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void draw_player(t_main_data *md)
 		j = 0;
 		while (j < md->grid_cell[1])
 		{
-			render(md->position.x + j, md->position.y + i, md, 'P');
+			render(md->position.x + j, md->position.y + i, md, md->conf.ceiling_color);
 			j++;
 		}
 		i++;
@@ -38,7 +38,7 @@ static void	draw_wall(int x, int y, t_main_data *md)
 		i = 0;
 		while (i < width)
 		{
-			render(x + i, y, md, 'W');
+			render(x + i, y, md, md->conf.floor_color);
 			i ++;
 		}
 		y++;
