@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 15:02:30 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/15 20:43:55 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,19 @@
 	{                                          \
 		"NO", "SO", "EA", "WE", "F", "C", NULL \
 	}
+# define RAY_COLOR \
+	(int[])       \
+	{             \
+		0, 255, 0 \
+	}
 # define HEIGHT 512
 # define WIDTH 1024
 # define NA M_PI / 2
 # define SA 3 * M_PI / 2
 # define EAN M_PI
 # define WA 0
+# define FOV M_PI / 2
+# define NUM_RAYS 60
 
 typedef enum
 {
@@ -152,12 +159,20 @@ void					draw_map(t_main_data *md);
 void					move(int key_code, t_main_data *md);
 void					orientation(int key_code, t_main_data *md);
 void					redisplay(t_main_data *md);
-void					render(int x, int y, t_main_data *md, int col[2]);
+void					render(int x, int y, t_main_data *md, int col[3]);
 void					set_initial_orientation(t_main_data *md);
 void					down_left(t_main_data *md, float cx, float cy);
 void					up_left(t_main_data *md, float cx, float cy);
 void					up_right(t_main_data *md, float cx, float cy);
 void					down_right(t_main_data *md, float cx, float cy);
+void					cast_rays(t_main_data *md);
+void					ray_forward(t_main_data *md, float ray_dy, float mid,
+							float pos_y);
+void					ray_back(t_main_data *md, float ray_dy, float mid_x,
+							float pos_y);
+void					ray_left(t_main_data *md, float dx, float pos_x,
+							float pos_y);
+void	ray_right(t_main_data *md, float dx, float pos_x, float pos_y);
 long long int			ft_atoil(const char *str);
 int						**init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);

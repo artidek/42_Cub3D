@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:02:34 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 17:02:15 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/15 17:37:00 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	w_move(t_main_data *md, float c_x, float c_y)
 		down_right(md, c_x, c_y);
 	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
 		up_right(md, c_x, c_y);
-	redisplay(md);
 }
 
 static void	s_move(t_main_data *md, float c_x, float c_y)
@@ -51,23 +50,14 @@ static void	s_move(t_main_data *md, float c_x, float c_y)
 		up_left(md, c_x, c_y);
 	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
 		down_left(md, c_x, c_y);
-	redisplay(md);
 }
 
 static void	a_move(t_main_data *md, float c_x, float c_y)
 {
 	if (ft_round(md->position.pa) == ft_round(NA))
-	{
 		left_collision(md, md->position.x - 5);
-		redisplay(md);
-		return ;
-	}
 	if (ft_round(md->position.pa) == ft_round(SA))
-	{
 		right_collision(md, md->position.x + 5);
-		redisplay(md);
-		return ;
-	}
 	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
 		up_left(md, c_x, c_y);
 	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
@@ -81,19 +71,10 @@ static void	a_move(t_main_data *md, float c_x, float c_y)
 
 static void	d_move(t_main_data *md, float c_x, float c_y)
 {
-	printf("cx %f\n", c_x);
 	if (ft_round(md->position.pa) == ft_round(NA))
-	{
 		right_collision(md, md->position.x + 5);
-		redisplay(md);
-		return ;
-	}
 	if (ft_round(md->position.pa) == ft_round(SA))
-	{
 		left_collision(md, md->position.x - 5);
-		redisplay(md);
-		return ;
-	}
 	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
 		up_left(md, c_x, c_y);
 	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
@@ -102,7 +83,6 @@ static void	d_move(t_main_data *md, float c_x, float c_y)
 		down_right(md, c_x, c_y);
 	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
 		up_right(md, c_x, c_y);
-	redisplay(md);
 }
 
 void	move(int key_code, t_main_data *md)
@@ -120,4 +100,5 @@ void	move(int key_code, t_main_data *md)
 		a_move(md, c_x, c_y);
 	if (key_code == D)
 		d_move(md, c_x, c_y);
+	cast_rays(md);
 }

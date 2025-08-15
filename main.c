@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 12:24:49 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/15 20:44:50 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int argc, char **argv, char **env)
 		destroy_main_data(&md);
 		return (1);
 	}
-	// start_maze(md);
 	destroy_main_data(&md);
 	return (0);
 }

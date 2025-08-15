@@ -6,18 +6,18 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:04:22 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 18:38:47 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/15 19:25:46 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static unsigned int	color(int color[2])
+static unsigned int	color(int color[3])
 {
 	return ((color[0] << 16) | (color[1] << 8) | color[2]);
 }
 
-void	render(int x, int y, t_main_data *md, int col[2])
+void	render(int x, int y, t_main_data *md, int col[3])
 {
 	unsigned int	rgb;
 	int	pix_addr;
@@ -37,5 +37,6 @@ void	redisplay(t_main_data *md)
 	md->wind.img = mlx_new_image(md->wind.mlx, WIDTH, HEIGHT);
 	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp, &md->wind.line_size, &md->wind.endian);
 	draw_map(md);
+	cast_rays(md);
 	mlx_put_image_to_window(md->wind.mlx, md->wind.win, md->wind.img,0,0);
 }
