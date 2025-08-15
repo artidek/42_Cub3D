@@ -6,114 +6,118 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:02:34 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/13 20:05:13 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/15 17:02:15 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	w_move(t_main_data *md)
+static void	w_move(t_main_data *md, float c_x, float c_y)
 {
-	if (!front_collision(md, md->position.y - sin(md->position.pa) * 5))
-	{
-		if (md->turn_key == LEFT)
-		{
-			if (!left_collision(md, get_x(md, W)))
-			{
-				move_up(md);
-				move_left(md);
-				redisplay(md);
-				return;
-			}
-		}
-		if(md->turn_key == RIGHT)
-		{
-			if (!right_collision(md, get_x(md, W)))
-			{
-				move_up(md);
-				move_right(md);
-				redisplay(md);
-				return;
-			}
-		}
-		move_up(md);
-	}
+	if (ft_round(md->position.pa) == ft_round(NA))
+		forward_collision(md,md->position.y - 5);
+	if(ft_round(md->position.pa) == ft_round(SA))
+		backward_collision(md,md->position.y + 5);
+	if (ft_round(md->position.pa) == ft_round(EAN))
+		left_collision(md, md->position.x - 5);
+	if (ft_round(md->position.pa) == ft_round(WA))
+		right_collision(md, md->position.x + 5);
+	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
+		up_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
+		down_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(SA))
+		down_right(md, c_x, c_y);
+	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
+		up_right(md, c_x, c_y);
 	redisplay(md);
 }
 
-static void	s_move(t_main_data *md)
+static void	s_move(t_main_data *md, float c_x, float c_y)
 {
-	if (!back_collision(md, md->position.y + sin(md->position.pa) * 5))
-	{
-		if (md->turn_key == LEFT)
-		{
-			if (!right_collision(md, get_x(md, S)))
-			{
-				move_down(md);
-				move_right(md);
-				redisplay(md);
-				return;
-			}
-		}
-		if(md->turn_key == RIGHT)
-		{
-			if (!left_collision(md, get_x(md, S)))
-			{
-				move_down(md);
-				move_left(md);
-				redisplay(md);
-				return;
-			}
-		}
-		move_down(md);
-	}
+	if (ft_round(md->position.pa) == ft_round(NA))
+		backward_collision(md,md->position.y + 5);
+	if (ft_round(md->position.pa) == ft_round(SA))
+		forward_collision(md,md->position.y - 5);
+	if (ft_round(md->position.pa) == ft_round(EAN))
+		left_collision(md, md->position.x - 5);
+	if (ft_round(md->position.pa) == ft_round(WA))
+		right_collision(md, md->position.x + 5);
+	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
+		down_right(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
+		up_right(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(SA))
+		up_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
+		down_left(md, c_x, c_y);
 	redisplay(md);
 }
 
-static void	a_move(t_main_data *md)
+static void	a_move(t_main_data *md, float c_x, float c_y)
 {
-	if (md->position.col - 1 > 0 && md->position.row->cols[md->position.col
-		- 1] == '1')
-		return ;
-	if (md->position.col - 1 > 0 && md->position.x <= md->grid_cell[0]
-		* md->position.col && md->position.row->cols[md->position.col
-		- 1] != '1')
+	if (ft_round(md->position.pa) == ft_round(NA))
 	{
-		md->position.x -= 5;
-		md->position.col -= 1;
+		left_collision(md, md->position.x - 5);
 		redisplay(md);
 		return ;
 	}
-	md->position.x -= 5;
-	redisplay(md);
-}
-
-static void	d_move(t_main_data *md)
-{
-	if (md->position.row->cols[md->position.col + 1] > 0 && md->position.row->cols[md->position.col
-		+ 1] == '1')
-		return ;
-	if (md->position.row->cols[md->position.col + 1] && md->position.x >= md->grid_cell[0]
-		* md->position.col && md->position.row->cols[md->position.col
-		+ 1] != '1')
+	if (ft_round(md->position.pa) == ft_round(SA))
 	{
-		md->position.x += 5;
-		md->position.col += 1;
+		right_collision(md, md->position.x + 5);
 		redisplay(md);
 		return ;
 	}
-	md->position.x += 5;
+	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
+		up_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
+		down_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(SA))
+		down_right(md, c_x, c_y);
+	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
+		up_right(md, c_x, c_y);
+	redisplay(md);
+}
+
+static void	d_move(t_main_data *md, float c_x, float c_y)
+{
+	printf("cx %f\n", c_x);
+	if (ft_round(md->position.pa) == ft_round(NA))
+	{
+		right_collision(md, md->position.x + 5);
+		redisplay(md);
+		return ;
+	}
+	if (ft_round(md->position.pa) == ft_round(SA))
+	{
+		left_collision(md, md->position.x - 5);
+		redisplay(md);
+		return ;
+	}
+	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
+		up_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
+		down_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(SA))
+		down_right(md, c_x, c_y);
+	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
+		up_right(md, c_x, c_y);
 	redisplay(md);
 }
 
 void	move(int key_code, t_main_data *md)
 {
+	float c_x;
+	float c_y;
+
+	c_x = cos(md->position.pa) * 5;
+	c_y = sin(md->position.pa) * 5;
 	if (key_code == W)
-		w_move(md);
+		w_move(md, c_x, c_y);
 	if (key_code == S)
-		s_move(md);
+		s_move(md, c_x, c_y);
 	if (key_code == A)
-		a_move(md);
+		a_move(md, c_x, c_y);
 	if (key_code == D)
-		d_move(md);
+		d_move(md, c_x, c_y);
 }

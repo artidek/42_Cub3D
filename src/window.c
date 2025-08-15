@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/13 19:10:18 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/14 12:01:56 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ static int	get_keys(int key_code, t_main_data *md)
 	if (key_code == 65307)
 		mlx_loop_end(md->wind.mlx);
 	else if (key_code == A || key_code == S || key_code == W || key_code == D)
-		move(key_code, md);
-	else if (key_code == LEFT || key_code == RIGHT)
 	{
 		md->turn_key = key_code;
+		move(key_code, md);
+	}	
+	else if (key_code == LEFT || key_code == RIGHT)
+	{
 		orientation(key_code, md);
 		redisplay(md);
 	}

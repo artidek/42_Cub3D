@@ -5,77 +5,77 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 10:17:42 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/13 20:04:47 by aobshatk         ###   ########.fr       */
+/*   Created: 2025/08/14 23:50:40 by aobshatk          #+#    #+#             */
+/*   Updated: 2025/08/15 17:06:04 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	front_collision(t_main_data *md, float c_y)
+void	forward_collision(t_main_data *md, float dy)
 {
 	t_map	*temp;
 
-	if (c_y < md->grid_cell[1] * md->position.row->row_index)
+	if (dy < md->grid_cell[1] * md->position.row->row_index)
 	{
 		temp = md->position.row->up;
 		if (temp->cols[md->position.col] == '1')
 		{
-			md->front_col = 1;
-			md->position.y = md->position.row->row_index * md->grid_cell[1] + 2;
-			return (1);
+			md->position.y = md->grid_cell[1] * md->position.row->row_index;
+			return ;
 		}
-	}
-	md->position.y = c_y;
-	return (0);
+		md->position.row = temp;
+	}	
+	md->position.y = dy;
 }
 
-int	back_collision(t_main_data *md, float c_y)
+void	backward_collision(t_main_data *md, float dy)
 {
 	t_map	*temp;
 
-	if (c_y >= md->grid_cell[1] * md->position.row->row_index)
+	if (dy > md->grid_cell[1] * md->position.row->row_index)
 	{
 		temp = md->position.row->down;
 		if (temp->cols[md->position.col] == '1')
 		{
-			md->back_col = 1;
-			md->position.y = md->position.row->row_index * md->grid_cell[1] + 2;
-			return (1);
+			md->position.y = md->grid_cell[1] * md->position.row->row_index;
+			return ;
 		}
-	}
-	md->position.y = c_y;
-	return (0);
+		md->position.row = temp;
+	}	
+	md->position.y = dy;
 }
 
-int	left_collision(t_main_data *md, float c_x)
+void	left_collision(t_main_data *md, float dx)
 {
-	char	cell;
+	char	temp;
 
-	cell = '0';
-	if (md->position.col - 1 > 0)
-		cell = md->position.row->cols[md->position.col - 1];
-	if (c_x < md->grid_cell[0] * md->position.col && cell == '1')
+	if (dx < md->grid_cell[0] * md->position.col)
 	{
-		md->position.x = md->position.col * md->grid_cell[0];
-		return (1);
+		temp = md->position.row->cols[md->position.col - 1];
+		if (temp == '1')
+		{
+			md->position.x = md->grid_cell[0] * md->position.col - 1;
+			return;
+		}
+		md->position.col -= 1;
 	}
-	md->position.x = c_x;
-	return (0);
+	md->position.x = dx;
 }
 
-int	right_collision(t_main_data *md, float c_x)
+void	right_collision(t_main_data *md, float dx)
 {
-	char cell;
-
-	cell = '0';
-	if (md->position.row->cols[md->position.col + 1])
-		cell = md->position.row->cols[md->position.col + 1];
-	if (c_x > md->grid_cell[0] * md->position.col && cell == '1')
+	char	temp;
+	
+	if (dx > md->grid_cell[0] * md->position.col)
 	{
-		md->position.x = md->position.col * md->grid_cell[0];
-		return (1);
+		temp = md->position.row->cols[md->position.col + 1];
+		if (temp == '1')
+		{
+			md->position.x = (md->grid_cell[0] * md->position.col + 1) -5;
+			return;
+		}
+		md->position.col += 1;
 	}
-	md->position.x = c_x;
-	return (0);
+	md->position.x = dx;
 }

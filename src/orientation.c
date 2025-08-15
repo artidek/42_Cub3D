@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 10:48:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/12 23:03:47 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:59:22 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ void	orientation(int key_code, t_main_data *md)
 {
 	if (key_code == LEFT)
 	{
-		if (md->position.pa <= 0)
-			md->position.pa += 0.35;
-		md->position.pa -= 0.35;
+		if (roundf((md->position.pa + 0.17) * 100) / 100 >= 2 * M_PI)
+			md->position.pa = 0;
+		else 
+			md->position.pa += 0.17;
 	}
 	if (key_code == RIGHT)
 	{
-		if (md->position.pa >= 2 * M_PI)
-			md->position.pa += 0.35;
-		md->position.pa += 0.35;
+		if (roundf((md->position.pa - 0.17) * 100) / 100 <= 0)
+			md->position.pa = 2 * M_PI;
+		else
+			md->position.pa -= 0.17; 
 	}
 }
 
@@ -38,4 +40,5 @@ void set_initial_orientation(t_main_data *md)
 		md->position.pa = M_PI;
 	if (md->position.orientation == 'W')
 		md->position.pa = 0;
+	md->position.ia = md->position.pa;
 }
