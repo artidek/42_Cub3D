@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 20:43:55 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:13:19 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,11 @@ typedef struct s_configs
 typedef struct s_pos
 {
 	char				orientation;
+	float				step_x;
+	float				step_y;
 	float				ia;
 	float				pa;
+	float				ra;
 	float				x;
 	float				y;
 	t_map				*row;
@@ -108,6 +111,9 @@ typedef struct s_pos
 typedef struct s_main_data
 {
 	char				*pwd;
+	// delete after test
+	float				coords[1000000][2];
+	int					count;
 	int					front_col;
 	int					back_col;
 	int					left_col;
@@ -166,13 +172,14 @@ void					up_left(t_main_data *md, float cx, float cy);
 void					up_right(t_main_data *md, float cx, float cy);
 void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
-void					ray_forward(t_main_data *md, float ray_dy, float mid,
-							float pos_y);
-void					ray_back(t_main_data *md, float ray_dy, float mid_x,
-							float pos_y);
-void					ray_left(t_main_data *md, float dx, float pos_x,
-							float pos_y);
-void	ray_right(t_main_data *md, float dx, float pos_x, float pos_y);
+float					ray_forward(t_main_data *md, t_map **row, float pos_y,
+							float ray_dy);
+float					ray_back(t_main_data *md, t_map **row, float pos_y,
+							float ray_dy);
+float					ray_left(t_main_data *md, int *col_index, float pos_x,
+							float dx);
+float					ray_right(t_main_data *md, int *col_index, float pos_x,
+							float dx);
 long long int			ft_atoil(const char *str);
 int						**init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);

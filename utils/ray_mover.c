@@ -6,84 +6,54 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 17:54:35 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 20:43:28 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:12:58 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ray_forward(t_main_data *md, float ray_dy, float mid, float pos_y)
+float	ray_forward(t_main_data *md, t_map **row, float pos_y, float ray_dy)
 {
-	t_map	*row;
-
-	row = md->position.row;
-	if (ft_round(md->position.pa) == ft_round(NA))
-	{
-		while (row)
-		{
-			if (row->cols[md->position.col] == '1')
-				break ;
-			render(mid, pos_y, md, RAY_COLOR);
-			pos_y -= ray_dy;
-			if (pos_y < md->grid_cell[1] * row->row_index)
-				row = row->up;
-		}
-	}
+	if (ft_round(ray_dy) < 0)
+		ray_dy *= -1;
+	pos_y -= ray_dy;
+	if (pos_y < md->grid_cell[1] * (*row)->row_index)
+		(*row) = (*row)->up;
+	return (pos_y);
 }
 
-void	ray_back(t_main_data *md, float ray_dy, float mid_x, float pos_y)
+float	ray_back(t_main_data *md, t_map **row, float pos_y, float ray_dy)
 {
-	t_map *row;
-
-	row = md->position.row;
-	while (row)
-	{
-		if (row->cols[md->position.col] == '1')
-			break ;
-		pos_y -= ray_dy;
-		render(mid_x, pos_y, md, RAY_COLOR);
-		if (pos_y > md->grid_cell[1] * row->row_index)
-		{
-			render(mid_x, pos_y, md, RAY_COLOR);
-			row = row->down;
-		}
-	}
+	if (ft_round(ray_dy) < 0)
+		ray_dy *= -1;
+	pos_y += ray_dy;
+	if (pos_y > md->grid_cell[1] * (*row)->row_index)
+		(*row) = (*row)->down;
+	return (pos_y);
 }
 
-void	ray_left(t_main_data *md, float dx, float pos_x, float pos_y)
+float	ray_left(t_main_data *md, int *col_index, float pos_x, float dx)
 {
-	int	col;
+	int	x_size;
 
-	col = md->position.col;
-	while (col > 0)
-	{
-		if (md->position.row->cols[col] == '1')
-			break;
-		pos_x += dx;
-		render(pos_x, pos_y, md, RAY_COLOR);
-		if (pos_x < md->grid_cell[0] * col)
-		{
-			render(pos_x, pos_y, md, RAY_COLOR);
-			col--;
-		}
-	}
+	x_size = md->grid_cell[0];
+	if (ft_round(dx) < 0)
+		dx *= -1;
+	pos_x -= dx;
+	if (pos_x < x_size * (*col_index))
+		*col_index -= 1;
+	return (pos_x);
 }
 
-void	ray_right(t_main_data *md, float dx, float pos_x, float pos_y)
+float	ray_right(t_main_data *md, int *col_index, float pos_x, float dx)
 {
-	int	col;
+	int	x_size;
 
-	col = md->position.col;
-	while (md->position.row->cols[col])
-	{
-		if (md->position.row->cols[col] == '1')
-			break;
-		pos_x += dx;
-		render(pos_x, pos_y, md, RAY_COLOR);
-		if (pos_x > md->grid_cell[0] * col)
-		{
-			render(pos_x, pos_y, md, RAY_COLOR);
-			col++;
-		}
-	}
+	x_size = md->grid_cell[0];
+	if (ft_round(dx) < 0)
+		dx *= -1;
+	pos_x += dx;
+	if (pos_x > x_size * (*col_index))
+		*col_index += 1;
+	return (pos_x);
 }

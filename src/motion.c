@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:02:34 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 17:37:00 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/16 11:54:26 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	s_move(t_main_data *md, float c_x, float c_y)
 	if (ft_round(md->position.pa) == ft_round(SA))
 		forward_collision(md,md->position.y - 5);
 	if (ft_round(md->position.pa) == ft_round(EAN))
-		left_collision(md, md->position.x - 5);
-	if (ft_round(md->position.pa) == ft_round(WA))
 		right_collision(md, md->position.x + 5);
+	if (ft_round(md->position.pa) == ft_round(WA))
+		left_collision(md, md->position.x + 5);
 	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
 		down_right(md, c_x, c_y);
 	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
@@ -58,6 +58,10 @@ static void	a_move(t_main_data *md, float c_x, float c_y)
 		left_collision(md, md->position.x - 5);
 	if (ft_round(md->position.pa) == ft_round(SA))
 		right_collision(md, md->position.x + 5);
+	if (ft_round(md->position.pa) == ft_round(EAN))
+		backward_collision(md, md->position.y + 5);
+	if(ft_round(md->position.pa) == ft_round(WA))
+		forward_collision(md, md->position.y - 5);
 	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
 		up_left(md, c_x, c_y);
 	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
@@ -71,6 +75,10 @@ static void	a_move(t_main_data *md, float c_x, float c_y)
 
 static void	d_move(t_main_data *md, float c_x, float c_y)
 {
+	if (ft_round(md->position.pa) == ft_round(EAN))
+		forward_collision(md, md->position.y - 5);
+	if(ft_round(md->position.pa) == ft_round(WA))
+		backward_collision(md, md->position.y + 5);
 	if (ft_round(md->position.pa) == ft_round(NA))
 		right_collision(md, md->position.x + 5);
 	if (ft_round(md->position.pa) == ft_round(SA))

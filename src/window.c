@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 18:32:32 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/16 11:42:35 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	get_keys(int key_code, t_main_data *md)
 	{
 		md->turn_key = key_code;
 		move(key_code, md);
+		redisplay(md);
 	}	
 	else if (key_code == LEFT || key_code == RIGHT)
 	{
