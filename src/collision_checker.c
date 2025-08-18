@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision_checker.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 23:50:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 17:06:04 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:02:20 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	forward_collision(t_main_data *md, float dy)
 			return ;
 		}
 		md->position.row = temp;
-	}	
+	}
 	md->position.y = dy;
 }
 
@@ -42,7 +42,7 @@ void	backward_collision(t_main_data *md, float dy)
 			return ;
 		}
 		md->position.row = temp;
-	}	
+	}
 	md->position.y = dy;
 }
 
@@ -66,7 +66,7 @@ void	left_collision(t_main_data *md, float dx)
 void	right_collision(t_main_data *md, float dx)
 {
 	char	temp;
-	
+
 	if (dx > md->grid_cell[0] * md->position.col)
 	{
 		temp = md->position.row->cols[md->position.col + 1];

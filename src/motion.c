@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   motion.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:02:34 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/16 11:54:26 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:16:58 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ static void	d_move(t_main_data *md, float c_x, float c_y)
 	if (ft_round(md->position.pa) == ft_round(SA))
 		left_collision(md, md->position.x - 5);
 	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
-		up_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
-		down_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(SA))
 		down_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
+	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
 		up_right(md, c_x, c_y);
+	if (ft_round(md->position.pa) > ft_round(SA))
+		up_left(md, c_x, c_y);
+	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
+		down_left(md, c_x, c_y);
 }
 
 void	move(int key_code, t_main_data *md)
