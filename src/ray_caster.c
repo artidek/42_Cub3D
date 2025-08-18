@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_caster.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 17:22:37 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/18 00:25:57 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:32:00 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	draw_wall(t_main_data *md, float pos_x, float pos_y)
 	dy = pos_y - md->position.y;
 	distance = sqrt((dx * dx) + (dy * dy));
 	p_distance = distance * cos(md->position.ra - md->position.pa);
-	printf("distance %f\n", p_distance);
+	md->position.wall_x = 0;
+	draw_object(md, HEIGHT/2 - (HEIGHT/p_distance)/2, HEIGHT/2 + (HEIGHT/p_distance)/2);
 }
 
 static void	diagonal_move(t_main_data *md, int *col_index, float *pos_x,

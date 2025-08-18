@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:02:34 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/18 14:16:58 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 16:11:25 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ static void	a_move(t_main_data *md, float c_x, float c_y)
 		down_right(md, c_x, c_y);
 	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
 		up_right(md, c_x, c_y);
-	redisplay(md);
 }
 
 static void	d_move(t_main_data *md, float c_x, float c_y)

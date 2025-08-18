@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:04:22 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 19:25:46 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:37:50 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	render(int x, int y, t_main_data *md, int col[3])
 	md->wind.data[pix_addr + 1] = (rgb >> 8) & 0xFF;
 	md->wind.data[pix_addr + 2] = (rgb >> 16) & 0xFF;
 	if (md->wind.bpp == 32)
-		md->wind.data[pix_addr + 3] = 0x00; 
+		md->wind.data[pix_addr + 3] = 0x00;
 }
 
 void	redisplay(t_main_data *md)
@@ -36,7 +36,7 @@ void	redisplay(t_main_data *md)
 	mlx_destroy_image(md->wind.mlx, md->wind.img);
 	md->wind.img = mlx_new_image(md->wind.mlx, WIDTH, HEIGHT);
 	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp, &md->wind.line_size, &md->wind.endian);
-	draw_map(md);
+	//draw_map(md);
 	cast_rays(md);
 	mlx_put_image_to_window(md->wind.mlx, md->wind.win, md->wind.img,0,0);
 }

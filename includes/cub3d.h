@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/17 20:13:19 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:37:03 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_pos
 	float				ra;
 	float				x;
 	float				y;
+	float				wall_x;
 	t_map				*row;
 	int					col;
 }						t_pos;
@@ -172,6 +173,7 @@ void					up_left(t_main_data *md, float cx, float cy);
 void					up_right(t_main_data *md, float cx, float cy);
 void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
+void					draw_object(t_main_data *md, int y_start, int y_end);
 float					ray_forward(t_main_data *md, t_map **row, float pos_y,
 							float ray_dy);
 float					ray_back(t_main_data *md, t_map **row, float pos_y,
