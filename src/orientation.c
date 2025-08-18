@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   orientation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 10:48:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/16 13:40:18 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:20:06 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	orientation(int key_code, t_main_data *md)
 		if (roundf((md->position.pa - 0.17) * 100) / 100 <= 0)
 			md->position.pa = 2 * M_PI;
 		else 
-			md->position.pa -= 0.17;
+			md->position.pa += 0.17;
 	}
 	if (key_code == RIGHT)
 	{
 		if (roundf((md->position.pa + 0.17) * 100) / 100 >= 2 * M_PI)
 			md->position.pa = 0;
 		else
-			md->position.pa += 0.17; 
+			md->position.pa -= 0.17; 
 	}
 }
 

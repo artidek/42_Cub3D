@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:24:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/10 19:39:25 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/18 12:51:10 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	get_size(int fd, int *width, int *height)
 
 	line = get_next_line(fd);
 	line[ft_strlen(line) - 1] = 0;
+	splited = NULL;
 	if (line)
 	{
 		splited = ft_split(line, ' ');
