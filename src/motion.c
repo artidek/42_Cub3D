@@ -3,109 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   motion.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:02:34 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/18 16:11:25 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:53:25 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	w_move(t_main_data *md, float c_x, float c_y)
+static void	d_move(t_main_data *md)
 {
-	if (ft_round(md->position.pa) == ft_round(NA))
-		forward_collision(md,md->position.y - 5);
-	if(ft_round(md->position.pa) == ft_round(SA))
-		backward_collision(md,md->position.y + 5);
-	if (ft_round(md->position.pa) == ft_round(EAN))
-		left_collision(md, md->position.x - 5);
-	if (ft_round(md->position.pa) == ft_round(WA))
-		right_collision(md, md->position.x + 5);
-	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
-		up_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
-		down_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(SA))
-		down_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
-		up_right(md, c_x, c_y);
+	float	p_x;
+	float	p_y;
+
+	p_x = md->position.x + cos(md->position.pa + M_PI /2) * SPEED;
+	p_y = md->position.y + sin(md->position.pa + M_PI / 2) * SPEED;
+	if (!collision(p_x, p_y, md))
+	{
+		md->position.x = p_x;
+		md->position.y = p_y;
+	}
 }
 
-static void	s_move(t_main_data *md, float c_x, float c_y)
+static void	a_move(t_main_data *md)
 {
-	if (ft_round(md->position.pa) == ft_round(NA))
-		backward_collision(md,md->position.y + 5);
-	if (ft_round(md->position.pa) == ft_round(SA))
-		forward_collision(md,md->position.y - 5);
-	if (ft_round(md->position.pa) == ft_round(EAN))
-		right_collision(md, md->position.x + 5);
-	if (ft_round(md->position.pa) == ft_round(WA))
-		left_collision(md, md->position.x + 5);
-	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
-		down_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
-		up_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(SA))
-		up_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
-		down_left(md, c_x, c_y);
+	float	p_x;
+	float	p_y;
+
+	p_x = md->position.x + cos(md->position.pa - M_PI /2) * SPEED;
+	p_y = md->position.y + sin(md->position.pa - M_PI / 2) * SPEED;
+	if (!collision(p_x, p_y, md))
+	{
+		md->position.x = p_x;
+		md->position.y = p_y;
+	}
 }
 
-static void	a_move(t_main_data *md, float c_x, float c_y)
+static void	s_move(t_main_data *md)
 {
-	if (ft_round(md->position.pa) == ft_round(NA))
-		left_collision(md, md->position.x - 5);
-	if (ft_round(md->position.pa) == ft_round(SA))
-		right_collision(md, md->position.x + 5);
-	if (ft_round(md->position.pa) == ft_round(EAN))
-		backward_collision(md, md->position.y + 5);
-	if(ft_round(md->position.pa) == ft_round(WA))
-		forward_collision(md, md->position.y - 5);
-	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
-		up_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
-		down_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(SA))
-		down_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
-		up_right(md, c_x, c_y);
+	float	p_x;
+	float	p_y;
+
+	p_x = md->position.x;
+	p_y = md->position.y;
+	p_x -= cos(md->position.pa) * SPEED;
+	p_y -= sin(md->position.pa) * SPEED;
+	if (!collision(p_x, p_y, md))
+	{
+		md->position.x = p_x;
+		md->position.y = p_y;
+	}
 }
 
-static void	d_move(t_main_data *md, float c_x, float c_y)
+static void	w_move(t_main_data *md)
 {
-	if (ft_round(md->position.pa) == ft_round(EAN))
-		forward_collision(md, md->position.y - 5);
-	if(ft_round(md->position.pa) == ft_round(WA))
-		backward_collision(md, md->position.y + 5);
-	if (ft_round(md->position.pa) == ft_round(NA))
-		right_collision(md, md->position.x + 5);
-	if (ft_round(md->position.pa) == ft_round(SA))
-		left_collision(md, md->position.x - 5);
-	if (ft_round(md->position.pa) > ft_round(NA) && ft_round(md->position.pa) < ft_round(EAN))
-		down_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(EAN) && ft_round(md->position.pa) < ft_round(SA))
-		up_right(md, c_x, c_y);
-	if (ft_round(md->position.pa) > ft_round(SA))
-		up_left(md, c_x, c_y);
-	if (ft_round(md->position.pa) < ft_round(NA) && ft_round(md->position.pa) > 0)
-		down_left(md, c_x, c_y);
+	float	p_x;
+	float	p_y;
+
+	p_x = md->position.x;
+	p_y = md->position.y;
+	p_x += cos(md->position.pa) * SPEED;
+	p_y += sin(md->position.pa) * SPEED;
+	if (!collision(p_x, p_y, md))
+	{
+		md->position.x = p_x;
+		md->position.y = p_y;
+	}
 }
 
 void	move(int key_code, t_main_data *md)
 {
-	float c_x;
-	float c_y;
-
-	c_x = cos(md->position.pa) * 5;
-	c_y = sin(md->position.pa) * 5;
 	if (key_code == W)
-		w_move(md, c_x, c_y);
+		w_move(md);
 	if (key_code == S)
-		s_move(md, c_x, c_y);
+		s_move(md);
 	if (key_code == A)
-		a_move(md, c_x, c_y);
+		a_move(md);
 	if (key_code == D)
-		d_move(md, c_x, c_y);
-	cast_rays(md);
+		d_move(md);
 }

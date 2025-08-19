@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:52:19 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/14 09:38:03 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:46:35 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	destroy_main_data(t_main_data *md)
 	if (md->wind.mlx)
 		destroy_window(md->wind);
 	free(md->pwd);
+	free_int_arr(md->grid, md->grid_size[0]);
 }
 
 void	free_int_arr(int **arr, int height)

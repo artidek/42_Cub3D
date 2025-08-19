@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/15 20:44:50 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:13:18 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	md.pwd = extract_directory(env);
 	if (!init_configs(&md, argv[1]))
+	{
+		destroy_main_data(&md);
+		return(1);
+	}
+	if (!build_grid(&md))
 	{
 		destroy_main_data(&md);
 		return(1);

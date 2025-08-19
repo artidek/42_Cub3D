@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/16 11:42:35 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:27:49 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ static int	get_keys(int key_code, t_main_data *md)
 	else if (key_code == A || key_code == S || key_code == W || key_code == D)
 	{
 		md->turn_key = key_code;
+		md->position.wall_x = 0;
 		move(key_code, md);
 		redisplay(md);
 	}	
 	else if (key_code == LEFT || key_code == RIGHT)
 	{
+		md->position.wall_x = 0;
 		orientation(key_code, md);
 		redisplay(md);
 	}
@@ -44,11 +46,12 @@ int	start_window(t_main_data *md)
 	md->wind.win = mlx_new_window(md->wind.mlx, WIDTH, HEIGHT, "cub3d");
 	md->wind.img = mlx_new_image(md->wind.mlx, WIDTH, HEIGHT);
 	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp, &md->wind.line_size, &md->wind.endian);
-	md->position.x = md->grid_cell[0] * md->position.col + md->position.x;
-	md->position.y = md->grid_cell[1] * md->position.row->row_index + md->position.y;
+	md->position.x = md->position.col * md->cell_size[0] + 32;
+	md->position.y = md->cell_size[1] * md->position.row->row_index + 32;
+	printf("player x %d\n", md->position.col);
 	set_initial_orientation(md);
+	md->position.wall_x = 0;
 	redisplay(md);
-	mlx_put_image_to_window(md->wind.mlx, md->wind.win, md->wind.img,0,0);
 	mlx_key_hook(md->wind.win, get_keys, md);
 	mlx_hook(md->wind.win, 33, 0, close_msg, md->wind.mlx);
 	mlx_loop(md->wind.mlx);
