@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/21 10:42:18 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:44:55 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define EAN M_PI
 # define WA 0
 # define FOV 60 * M_PI / 180
-# define NUM_RAYS 1200
+# define NUM_RAYS WIDTH
 # define SPEED 5
 
 typedef enum
@@ -111,6 +111,14 @@ typedef struct s_pos
 typedef struct s_main_data
 {
 	char				*pwd;
+	float				xo;
+	float				yo;
+	float				hx;
+	float				hy;
+	float				vx;
+	float				vy;
+	int					hor;
+	int					vert;
 	int					grid_size[2];
 	int					cell_size[2];
 	int					**grid;
@@ -144,6 +152,8 @@ int						no_path(t_map *y);
 int						start_window(t_main_data *md);
 int						build_grid(t_main_data *md);
 int						collision(float ray_x, float ray_y, t_main_data *md);
+int						cast_vert(t_main_data *md);
+int						cast_hor(t_main_data *md);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
 void					left_collision(t_main_data *md, float dx);
