@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/19 22:36:06 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/21 10:42:18 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define SA 3 * M_PI / 2
 # define EAN M_PI
 # define WA 0
-# define FOV M_PI / 2
+# define FOV 60 * M_PI / 180
 # define NUM_RAYS 1200
 # define SPEED 5
 

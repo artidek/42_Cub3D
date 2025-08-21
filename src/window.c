@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/19 23:27:49 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/21 10:36:20 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	get_keys(int key_code, t_main_data *md)
 		md->position.wall_x = 0;
 		move(key_code, md);
 		redisplay(md);
-	}	
+	}
 	else if (key_code == LEFT || key_code == RIGHT)
 	{
 		md->position.wall_x = 0;
@@ -52,7 +52,7 @@ int	start_window(t_main_data *md)
 	set_initial_orientation(md);
 	md->position.wall_x = 0;
 	redisplay(md);
-	mlx_key_hook(md->wind.win, get_keys, md);
+	mlx_hook(md->wind.win, 2, 1L<<0, get_keys, md);
 	mlx_hook(md->wind.win, 33, 0, close_msg, md->wind.mlx);
 	mlx_loop(md->wind.mlx);
 	return (1);
