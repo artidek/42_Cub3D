@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/21 10:36:20 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 11:13:50 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	get_keys(int key_code, t_main_data *md)
 		mlx_loop_end(md->wind.mlx);
 	else if (key_code == A || key_code == S || key_code == W || key_code == D)
 	{
-		md->turn_key = key_code;
 		md->position.wall_x = 0;
 		move(key_code, md);
 		redisplay(md);
@@ -46,9 +45,7 @@ int	start_window(t_main_data *md)
 	md->wind.win = mlx_new_window(md->wind.mlx, WIDTH, HEIGHT, "cub3d");
 	md->wind.img = mlx_new_image(md->wind.mlx, WIDTH, HEIGHT);
 	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp, &md->wind.line_size, &md->wind.endian);
-	md->position.x = md->position.col * md->cell_size[0] + 32;
-	md->position.y = md->cell_size[1] * md->position.row->row_index + 32;
-	printf("player x %d\n", md->position.col);
+	get_grid_coord(md);
 	set_initial_orientation(md);
 	md->position.wall_x = 0;
 	redisplay(md);

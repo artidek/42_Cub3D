@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/21 15:44:55 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:13:14 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@
 	{             \
 		0, 255, 0 \
 	}
-# define HEIGHT 600
-# define WIDTH 1200
-# define NA M_PI / 2
-# define SA 3 * M_PI / 2
-# define EAN M_PI
-# define WA 0
-# define FOV 60 * M_PI / 180
+# define HEIGHT 768
+# define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define SPEED 5
+# define R_SPEED (2.0 * M_PI / 180)
+#define SPEED 0.05
 
 typedef enum
 {
@@ -111,14 +107,30 @@ typedef struct s_pos
 typedef struct s_main_data
 {
 	char				*pwd;
-	float				xo;
-	float				yo;
-	float				hx;
-	float				hy;
-	float				vx;
-	float				vy;
-	int					hor;
-	int					vert;
+	float				pos_x;
+	float				pos_y;
+	float				dir_x;
+	float				dir_y;
+	float				plane_x;
+	float				plane_y;
+	float				time;
+	float				old_time;
+	float				ray_dirx;
+	float				ray_diry;
+	float				camera_x;
+	float				side_dist_x;
+	float				sidi_dist_y;
+	float				delta_dist_x;
+	float				delta_dist_y;
+	float				perp_wall_dist;
+	int					step_x;
+	int					step_y;
+	int					hit;
+	int					side;
+	int					draw_start;
+	int					draw_end;
+	int					map_x;
+	int					map_y;
 	int					grid_size[2];
 	int					cell_size[2];
 	int					**grid;
@@ -156,6 +168,7 @@ int						cast_vert(t_main_data *md);
 int						cast_hor(t_main_data *md);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
+void					get_grid_coord(t_main_data *md);
 void					left_collision(t_main_data *md, float dx);
 void					right_collision(t_main_data *md, float dx);
 void					forward_collision(t_main_data *md, float dy);
@@ -184,9 +197,8 @@ void					up_left(t_main_data *md, float cx, float cy);
 void					up_right(t_main_data *md, float cx, float cy);
 void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
-void					draw_object(t_main_data *md, float y_start,
-							float y_end);
-
+void					draw_object(t_main_data *md);
+void					get_delta_dist(t_main_data *md);
 float					ray_forward(t_main_data *md, t_map **row, float pos_y,
 							float ray_dy);
 float					ray_back(t_main_data *md, t_map **row, float pos_y,
