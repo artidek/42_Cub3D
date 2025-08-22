@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 13:47:27 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 22:13:26 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	add_texture(t_main_data *md, char *path, int texture)
 	int	fd;
 	int	width;
 	int	height;
-	int	**temp_arr;
 
 	fd = valid_path(path, md->pwd);
 	if (fd < 0)
@@ -73,12 +72,11 @@ void	add_texture(t_main_data *md, char *path, int texture)
 		return ;
 	fd = valid_path(path, md->pwd);
 	skip_line(fd, 4);
-	temp_arr = init_text_arr(fd, width, height);
+	printf("texture %d\n", texture);
+	md->conf.textures[texture].text_arr = init_text_arr(fd, width, height);
 	md->conf.textures[texture].type = texture;
 	md->conf.textures[texture].width = width;
 	md->conf.textures[texture].height = height;
-	dig_text(md, temp_arr, texture);
-	free_int_arr(temp_arr, height);
 	close(fd);
 }
 

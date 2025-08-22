@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:52:19 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/19 14:46:35 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:30:29 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	destroy_main_data(t_main_data *md)
 	while(i < 4)
 	{
 		if (md->conf.textures[i].text_arr)
-			free_int_arr(md->conf.textures[i].text_arr, md->conf.textures[i].height);
+			free(md->conf.textures[i].text_arr);
 		i++;
 	}
 	if (md->map)

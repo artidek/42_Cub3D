@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 17:22:37 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 11:03:13 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 21:55:43 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 static	void draw(t_main_data *md)
 {
-	int line_height;
-
-	line_height = (int)(HEIGHT / md->perp_wall_dist);
-	md->draw_start = - line_height / 2 + HEIGHT / 2;
+	md->line_height = (int)(HEIGHT / md->perp_wall_dist);
+	md->draw_start = - md->line_height / 2 + HEIGHT / 2;
 	if (md->draw_start < 0)
 		md->draw_start = 0;
-	md->draw_end = line_height / 2 + HEIGHT / 2;
+	md->draw_end = md->line_height / 2 + HEIGHT / 2;
 	if (md->draw_end > HEIGHT)
 		md->draw_end = HEIGHT - 1;
 	draw_object(md);
@@ -91,11 +89,12 @@ void	cast_rays(t_main_data *md)
 	int x;
 
 	x = 0;
-	md->time = 0;
-	md->old_time = 0;
+	md->tex_x = 0;
+	md->tex_y = 0;
+	md->position.wall_x = 0;
 	while (x < WIDTH)
 	{
-		md->camera_x = 2 * x / (float)WIDTH - 1;
+		md->camera_x = 2 * x / (double)WIDTH - 1;
 		md->ray_dirx = md->dir_x + md->plane_x * md->camera_x;
 		md->ray_diry = md->dir_y + md->plane_y * md->camera_x;
 		set_ray(md);

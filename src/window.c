@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:08:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 11:13:50 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:45:49 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ static int	get_keys(int key_code, t_main_data *md)
 		mlx_loop_end(md->wind.mlx);
 	else if (key_code == A || key_code == S || key_code == W || key_code == D)
 	{
-		md->position.wall_x = 0;
 		move(key_code, md);
 		redisplay(md);
 	}
 	else if (key_code == LEFT || key_code == RIGHT)
 	{
-		md->position.wall_x = 0;
 		orientation(key_code, md);
 		redisplay(md);
 	}
@@ -47,7 +45,6 @@ int	start_window(t_main_data *md)
 	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp, &md->wind.line_size, &md->wind.endian);
 	get_grid_coord(md);
 	set_initial_orientation(md);
-	md->position.wall_x = 0;
 	redisplay(md);
 	mlx_hook(md->wind.win, 2, 1L<<0, get_keys, md);
 	mlx_hook(md->wind.win, 33, 0, close_msg, md->wind.mlx);

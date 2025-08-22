@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 13:09:02 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 23:41:05 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@
 	{             \
 		0, 255, 0 \
 	}
-# define HEIGHT 768
-# define WIDTH 1024
+# define HEIGHT 480
+# define WIDTH 640
 # define NUM_RAYS WIDTH
 # define R_SPEED (2.0 * M_PI / 180)
 # define SPEED 0.05
+#define EPSILON 0.0001
 
 typedef enum
 {
@@ -81,7 +82,7 @@ typedef struct s_texture
 	} type;
 	int					width;
 	int					height;
-	int					**text_arr;
+	int					*text_arr;
 }						t_texture;
 
 typedef struct s_configs
@@ -107,22 +108,20 @@ typedef struct s_pos
 typedef struct s_main_data
 {
 	char				*pwd;
-	float				pos_x;
-	float				pos_y;
-	float				dir_x;
-	float				dir_y;
-	float				plane_x;
-	float				plane_y;
-	float				time;
-	float				old_time;
-	float				ray_dirx;
-	float				ray_diry;
-	float				camera_x;
-	float				side_dist_x;
-	float				sidi_dist_y;
-	float				delta_dist_x;
-	float				delta_dist_y;
-	float				perp_wall_dist;
+	double				pos_x;
+	double				pos_y;
+	double			dir_x;
+	double				dir_y;
+	double				plane_x;
+	double				plane_y;
+	double				ray_dirx;
+	double				ray_diry;
+	double				camera_x;
+	double				side_dist_x;
+	double				sidi_dist_y;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	double				perp_wall_dist;
 	int					step_x;
 	int					step_y;
 	int					hit;
@@ -131,6 +130,8 @@ typedef struct s_main_data
 	int					draw_end;
 	int					map_x;
 	int					map_y;
+	int					tex_x;
+	int					tex_y;
 	int					grid_size[2];
 	int					cell_size[2];
 	int					**grid;
@@ -140,6 +141,7 @@ typedef struct s_main_data
 	int					right_col;
 	int					turn_key;
 	int					color_int[3];
+	int					line_height;
 	float				grid_cell[2];
 	struct s_window		wind;
 	struct s_configs	conf;
@@ -201,8 +203,6 @@ void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
 void					draw_object(t_main_data *md);
 void					get_delta_dist(t_main_data *md);
-void					dig_text(t_main_data *md, int **color_vals,
-							int texture);
 float					ray_forward(t_main_data *md, t_map **row, float pos_y,
 							float ray_dy);
 float					ray_back(t_main_data *md, t_map **row, float pos_y,
@@ -212,7 +212,7 @@ float					ray_left(t_main_data *md, int *col_index, float pos_x,
 float					ray_right(t_main_data *md, int *col_index, float pos_x,
 							float dx);
 long long int			ft_atoil(const char *str);
-int						**init_text_arr(int fd, int width, int height);
+int						*init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);
 
 #endif

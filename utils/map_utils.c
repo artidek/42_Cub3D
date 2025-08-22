@@ -6,34 +6,11 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:13:01 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 14:04:11 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:19:06 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	dig_text(t_main_data *md, int **color_vals, int texture)
-{
-	int	i;
-	int	j;
-
-	md->conf.textures[texture].text_arr = malloc(sizeof(int *) * md->conf.textures[texture].height);
-	i = 0;
-	while (i < md->conf.textures[texture].height)
-	{
-		md->conf.textures[texture].text_arr[i] = malloc(sizeof(int) * md->conf.textures[texture].width);
-		j = 0;
-		while (j < md->conf.textures[texture].width * 3)
-		{
-			md->color_int[0] = color_vals[i][j];
-			md->color_int[1] = color_vals[i][j + 1];
-			md->color_int[2] = color_vals[i][j + 2];
-			md->conf.textures[texture].text_arr[i][j/3] = color(md->color_int);
-			j += 3;
-		}
-		i++;
-	}
-}
 
 int	valid_border(t_map *map, int i)
 {

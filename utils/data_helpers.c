@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   data_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:24:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/18 12:51:10 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/08/22 23:23:50 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int valid_path(char *path, char *dir)
+int	valid_path(char *path, char *dir)
 {
-	int	fd;
+	int		fd;
 	char	**splited;
 	char	*full_path;
 
@@ -35,7 +35,7 @@ int valid_path(char *path, char *dir)
 
 void	skip_line(int fd, int num_lines)
 {
-	int	i;
+	int		i;
 	char	*line;
 
 	i = 0;
@@ -69,27 +69,28 @@ void	get_size(int fd, int *width, int *height)
 	free(line);
 }
 
-int	**init_text_arr(int fd, int width, int height)
+int	*init_text_arr(int fd, int width, int height)
 {
-	int	**ret;
-	int i;
-	int	j;
+	int		i;
+	int		j;
+	int	rgb[3];
+	int		*ret;
 	char	*line;
 
-	ret = malloc(sizeof(int *) * height);
+	ret = malloc(sizeof(int) * height * width);
 	i = 0;
-	j = 0;
-	while (i < height)
+	while (i < height * width)
 	{
-		ret[i] = malloc(sizeof(int) * width * 3);
-		while (j < width * 3)
+		j = 0;
+		while (j < 3)
 		{
 			line = get_next_line(fd);
 			if (line && line[0] != '\n')
-				ret[i][j] = ft_atoi(line);
-			j++;
+				rgb[j] = ft_atoi(line);
 			free(line);
+			j++;
 		}
+		ret[i] = color(rgb);
 		i++;
 	}
 	return (ret);
@@ -98,12 +99,12 @@ int	**init_text_arr(int fd, int width, int height)
 int	valid_texture(int fd, int width, int height)
 {
 	int count;
-	char	*line;
+	char *line;
 
 	skip_line(fd, 1);
 	count = 0;
 	line = get_next_line(fd);
-	while(line && line[0] != '\n')
+	while (line && line[0] != '\n')
 	{
 		count++;
 		free(line);
