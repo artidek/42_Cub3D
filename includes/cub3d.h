@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 12:13:14 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:09:02 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define WIDTH 1024
 # define NUM_RAYS WIDTH
 # define R_SPEED (2.0 * M_PI / 180)
-#define SPEED 0.05
+# define SPEED 0.05
 
 typedef enum
 {
@@ -87,8 +87,8 @@ typedef struct s_texture
 typedef struct s_configs
 {
 	struct s_texture	textures[4];
-	int					floor_color[3];
-	int					ceiling_color[3];
+	int					floor_color;
+	int					ceiling_color;
 }						t_configs;
 
 typedef struct s_pos
@@ -139,6 +139,7 @@ typedef struct s_main_data
 	int					left_col;
 	int					right_col;
 	int					turn_key;
+	int					color_int[3];
 	float				grid_cell[2];
 	struct s_window		wind;
 	struct s_configs	conf;
@@ -166,6 +167,7 @@ int						build_grid(t_main_data *md);
 int						collision(float ray_x, float ray_y, t_main_data *md);
 int						cast_vert(t_main_data *md);
 int						cast_hor(t_main_data *md);
+unsigned int			color(int color[3]);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
 void					get_grid_coord(t_main_data *md);
@@ -190,7 +192,7 @@ void					draw_map(t_main_data *md);
 void					move(int key_code, t_main_data *md);
 void					orientation(int key_code, t_main_data *md);
 void					redisplay(t_main_data *md);
-void					render(int x, int y, t_main_data *md, int col[3]);
+void					render(int x, int y, t_main_data *md, int col);
 void					set_initial_orientation(t_main_data *md);
 void					down_left(t_main_data *md, float cx, float cy);
 void					up_left(t_main_data *md, float cx, float cy);
@@ -199,6 +201,8 @@ void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
 void					draw_object(t_main_data *md);
 void					get_delta_dist(t_main_data *md);
+void					dig_text(t_main_data *md, int **color_vals,
+							int texture);
 float					ray_forward(t_main_data *md, t_map **row, float pos_y,
 							float ray_dy);
 float					ray_back(t_main_data *md, t_map **row, float pos_y,

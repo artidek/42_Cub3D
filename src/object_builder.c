@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:22:59 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 01:10:02 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:03:51 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void draw_object(t_main_data *md)
 {
-    int *color;
+    int color;
 
 	if (md->side == 1)
 		color = md->conf.floor_color;

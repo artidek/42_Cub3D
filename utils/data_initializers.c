@@ -6,11 +6,19 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/14 09:37:41 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:47:27 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static void add_to_md(t_main_data *md,char *type, int color_int[3])
+{
+	if (*type == 'F')
+		md->conf.floor_color = color(color_int);
+	if (*type == 'C')
+		md->conf.ceiling_color = color(color_int);
+}
 
 t_map	*new_node(char *cols)
 {
@@ -54,6 +62,7 @@ void	add_texture(t_main_data *md, char *path, int texture)
 	int	fd;
 	int	width;
 	int	height;
+	int	**temp_arr;
 
 	fd = valid_path(path, md->pwd);
 	if (fd < 0)
@@ -62,10 +71,14 @@ void	add_texture(t_main_data *md, char *path, int texture)
 	get_size(fd, &width, &height);
 	if (!valid_texture(fd, width, height))
 		return ;
-	md->conf.textures[texture].text_arr = init_text_arr(fd, width, height);
+	fd = valid_path(path, md->pwd);
+	skip_line(fd, 4);
+	temp_arr = init_text_arr(fd, width, height);
 	md->conf.textures[texture].type = texture;
 	md->conf.textures[texture].width = width;
 	md->conf.textures[texture].height = height;
+	dig_text(md, temp_arr, texture);
+	free_int_arr(temp_arr, height);
 	close(fd);
 }
 
@@ -84,9 +97,9 @@ void	add_color(char *type, char *color, t_main_data *md)
 		{
 			add_to_str(&color_val, 3, &color[i]);
 			if (type[0] == 'F')
-				md->conf.floor_color[j] = ft_atoi(color_val);
+				md->color_int[j] = ft_atoi(color_val);
 			if (type[0] == 'C')
-				md->conf.ceiling_color[j] = ft_atoi(color_val);
+				md->color_int[j] = ft_atoi(color_val);
 			j++;
 			free(color_val);
 			color_val = NULL;
@@ -95,4 +108,5 @@ void	add_color(char *type, char *color, t_main_data *md)
 		if (color[i])
 			i++;
 	}
+	add_to_md(md,type, md->color_int);
 }

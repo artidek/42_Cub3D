@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/19 15:31:52 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:45:23 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	invalid_config(t_main_data *md)
 		return (1);
 	if (!md->conf.textures[3].text_arr)
 		return (1);
-	if (md->conf.floor_color[0] == -1)
+	if (md->conf.floor_color == -1)
 		return (1);
-	if (md->conf.ceiling_color[0] == -1)
+	if (md->conf.ceiling_color == -1)
 		return (1);
 	if (!md->map)
 		return (1);
@@ -44,8 +44,8 @@ static void	init_data(t_main_data *md)
 	md->conf.textures[SO].text_arr = NULL;
 	md->conf.textures[EA].text_arr = NULL;
 	md->conf.textures[WE].text_arr = NULL;
-	md->conf.floor_color[0] = -1;
-	md->conf.ceiling_color[0] = -1;
+	md->conf.floor_color = -1;
+	md->conf.ceiling_color = -1;
 	md->map = NULL;
 	md->position.x = 0;
 	md->position.y = 0;

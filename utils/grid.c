@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:51:53 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/19 22:59:53 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:25:13 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	build_grid(t_main_data *md)
 		fill_cols(temp, md->grid[temp->row_index -1]);
 		temp = temp->down;
 	}
-	md->cell_size[0] = 64;
-	md->cell_size[1] = 64;
+	md->cell_size[0] = 24;
+	md->cell_size[1] = 24;
 	set_player_coords(md);
 	return (1);
 }

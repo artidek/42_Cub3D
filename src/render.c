@@ -6,27 +6,25 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:04:22 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/18 23:06:09 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:27:23 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static unsigned int	color(int color[3])
+unsigned int	color(int color[3])
 {
 	return ((color[0] << 16) | (color[1] << 8) | color[2]);
 }
 
-void	render(int x, int y, t_main_data *md, int col[3])
+void	render(int x, int y, t_main_data *md, int col)
 {
-	unsigned int	rgb;
 	int	pix_addr;
 
 	pix_addr = (y * md->wind.line_size) + (x * (md->wind.bpp/8));
-	rgb = color(col);
-	md->wind.data[pix_addr] = rgb & 0xFF;
-	md->wind.data[pix_addr + 1] = (rgb >> 8) & 0xFF;
-	md->wind.data[pix_addr + 2] = (rgb >> 16) & 0xFF;
+	md->wind.data[pix_addr] = col & 0xFF;
+	md->wind.data[pix_addr + 1] = (col >> 8) & 0xFF;
+	md->wind.data[pix_addr + 2] = (col >> 16) & 0xFF;
 	if (md->wind.bpp == 32)
 		md->wind.data[pix_addr + 3] = 0x00;
 }
