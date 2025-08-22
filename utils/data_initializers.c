@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 22:13:26 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/23 00:02:41 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	add_texture(t_main_data *md, char *path, int texture)
 		return ;
 	fd = valid_path(path, md->pwd);
 	skip_line(fd, 4);
-	printf("texture %d\n", texture);
 	md->conf.textures[texture].text_arr = init_text_arr(fd, width, height);
 	md->conf.textures[texture].type = texture;
 	md->conf.textures[texture].width = width;
