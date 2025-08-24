@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:39:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 14:24:04 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/23 19:15:26 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,26 @@ void	add_to_str(char **str_add, int size, char *str)
 	free(temp);
 }
 
-void skip_char(char *str, int *i, char c)
+void skip_char(char *str, int *i, char *c)
 {
-	while (str[*i] && str[*i] != c)
+	int	j;
+	int	len;
+	
+	len = ft_strlen(c);
+	while (str[*i])
+	{
+		j = len - 1;
+		while (j >= 0)
+		{
+			if (str[*i] == c[j])
+				break;
+			j--;
+		}
+		if (j < 0)
+			return;
 		(*i)++;
+	}
+	
 }
 
 long long int	ft_atoil(const char *str)

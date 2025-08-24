@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:51:53 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 21:40:29 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/24 15:30:49 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,14 @@ int	build_grid(t_main_data *md)
 	md->grid = malloc(sizeof(int *) * y_size);
 	temp = md->map;
 	x_size = temp->num_cols;
-	md->grid_size[0] = y_size;
 	md->grid_size[1] = x_size;
 	while (temp)
 	{
-		if (temp->num_cols != x_size)
-		{
-			ft_printf("invalid size of a map row\n");
-			return (0);
-		}
+		md->grid_size[0] = temp->row_index;
 		md->grid[temp->row_index - 1] = malloc(sizeof(int) * temp->num_cols);
 		fill_cols(temp, md->grid[temp->row_index -1]);
 		temp = temp->down;
 	}
-	md->cell_size[0] = 24;
-	md->cell_size[1] = 24;
 	set_player_coords(md);
 	return (1);
 }

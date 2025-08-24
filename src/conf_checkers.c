@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/10 20:35:50 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:09:40 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,7 @@ int	check_line(char *line, t_main_data *md, int fd)
 
 	i = 0;
 	check = NULL;
-	if (line[0] == ' ')
-		skip_char(line, &i, ' ');
+	skip_char(line, &i, " 	");
 	if (!line[i])
 		return (0);
 	while (line[i] && line[i] != ' ' && line[i] != '\n')

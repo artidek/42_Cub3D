@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 23:41:05 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/24 21:59:55 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <math.h>
 
 # define M_PI 3.14159265358979323846
-# define MAP_SYMB "NWSE01 "
+# define MAP_SYMB "NWSE01 	"
 # define CONFIGS                                \
 	(char *[])                                 \
 	{                                          \
@@ -34,12 +34,11 @@
 	{             \
 		0, 255, 0 \
 	}
-# define HEIGHT 480
-# define WIDTH 640
+# define HEIGHT 768
+# define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define R_SPEED (2.0 * M_PI / 180)
-# define SPEED 0.05
-#define EPSILON 0.0001
+# define R_SPEED (2.5 * (1.0 / 90.0))
+# define SPEED 0.15
 
 typedef enum
 {
@@ -110,7 +109,7 @@ typedef struct s_main_data
 	char				*pwd;
 	double				pos_x;
 	double				pos_y;
-	double			dir_x;
+	double				dir_x;
 	double				dir_y;
 	double				plane_x;
 	double				plane_y;
@@ -160,7 +159,6 @@ int						valid_path(char *path, char *dir);
 int						check_ext(char *file, char *ext);
 int						check_row(char *row);
 int						check_map(t_main_data *md);
-int						valid_border(t_map *map, int i);
 int						locate_player(t_map *map, t_map **y, int *x,
 							char *player);
 int						no_path(t_map *y);
@@ -169,6 +167,7 @@ int						build_grid(t_main_data *md);
 int						collision(float ray_x, float ray_y, t_main_data *md);
 int						cast_vert(t_main_data *md);
 int						cast_hor(t_main_data *md);
+int						valid_walls(t_map *map);
 unsigned int			color(int color[3]);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
@@ -180,7 +179,7 @@ void					backward_collision(t_main_data *md, float dy);
 void					parse_path(t_map *y, int x);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
-void					skip_char(char *str, int *i, char c);
+void					skip_char(char *str, int *i, char *c);
 void					skip_line(int fd, int num_lines);
 void					get_size(int fd, int *width, int *height);
 void					add_node(t_map **map, t_map *node);
@@ -203,6 +202,7 @@ void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
 void					draw_object(t_main_data *md);
 void					get_delta_dist(t_main_data *md);
+void					check_walls(t_map *map, int i);
 float					ray_forward(t_main_data *md, t_map **row, float pos_y,
 							float ray_dy);
 float					ray_back(t_main_data *md, t_map **row, float pos_y,
