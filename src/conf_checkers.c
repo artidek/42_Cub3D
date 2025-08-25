@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_checkers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 11:09:40 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:59:23 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_map(char *line, int fd, t_main_data *md)
 {
-	char *row;
+	char	*row;
 
 	line[ft_strlen(line) - 1] = 0;
 	if (!check_row(line))
@@ -23,7 +23,7 @@ static int	is_map(char *line, int fd, t_main_data *md)
 	row = get_next_line(fd);
 	if (!row)
 		return (0);
-	while(row && row[0] != '\n')
+	while (row && row[0] != '\n')
 	{
 		row[ft_strlen(row) - 1] = 0;
 		if (check_row(row))
@@ -34,7 +34,7 @@ static int	is_map(char *line, int fd, t_main_data *md)
 			return (0);
 		}
 		free(row);
-		row = get_next_line(fd);	
+		row = get_next_line(fd);
 	}
 	if (row)
 		free(row);
@@ -43,15 +43,15 @@ static int	is_map(char *line, int fd, t_main_data *md)
 
 static int	is_text(char *str)
 {
-	int	i;
-	int texture;
-	int len;
-	char **conf;
+	int		i;
+	int		texture;
+	int		len;
+	char	**conf;
 
 	i = 0;
 	texture = -1;
 	len = ft_strlen(str);
-	conf = CONFIGS;
+	conf = (char *[]){"NO", "SO", "EA", "WE", "F", "C", NULL};
 	while (i < 4)
 	{
 		if (len == 2 && ft_strncmp(str, conf[i], 2) == 0)
@@ -92,7 +92,7 @@ static int	is_f_c(char *str, char *line, t_main_data *md)
 static int	is_conf(char *str, char *line, t_main_data *md, int fd)
 {
 	int	len;
-	int texture;
+	int	texture;
 
 	len = 0;
 	if (line[0] == '\n')
@@ -117,8 +117,8 @@ static int	is_conf(char *str, char *line, t_main_data *md, int fd)
 
 int	check_line(char *line, t_main_data *md, int fd)
 {
-	int i;
-	char *check;
+	char	*check;
+	int		i;
 
 	i = 0;
 	check = NULL;

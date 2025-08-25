@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:51:53 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 15:30:49 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:36:13 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 static void	set_player_coords(t_main_data *md)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
 	while (i < md->grid_size[0])
 	{
-		while(j < md->grid_size[1])
+		while (j < md->grid_size[1])
 		{
-			if (md->grid[i][j] == 'N' || md->grid[i][j] == 'S' || md->grid[i][j] == 'E' || md->grid[i][j] == 'W')
+			if (md->grid[i][j] == 'N' || md->grid[i][j] == 'S'
+				|| md->grid[i][j] == 'E' || md->grid[i][j] == 'W')
 			{
 				md->position.x = j * md->cell_size[1];
 				md->position.y = i * md->cell_size[0];
-				return;
+				return ;
 			}
 			j++;
 		}
@@ -66,9 +67,9 @@ static void	fill_cols(t_map *row, int *cells)
 
 int	build_grid(t_main_data *md)
 {
-	t_map *temp;
-	int y_size;
-	int x_size;
+	t_map	*temp;
+	int		y_size;
+	int		x_size;
 
 	y_size = num_rows(md);
 	md->grid = malloc(sizeof(int *) * y_size);
@@ -79,7 +80,7 @@ int	build_grid(t_main_data *md)
 	{
 		md->grid_size[0] = temp->row_index;
 		md->grid[temp->row_index - 1] = malloc(sizeof(int) * temp->num_cols);
-		fill_cols(temp, md->grid[temp->row_index -1]);
+		fill_cols(temp, md->grid[temp->row_index - 1]);
 		temp = temp->down;
 	}
 	set_player_coords(md);

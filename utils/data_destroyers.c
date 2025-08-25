@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_destroyers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:52:19 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 15:23:27 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:30:15 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	destroy_main_data(t_main_data *md)
 	int	i;
 
 	i = 0;
-	while(i < 4)
+	while (i < 4)
 	{
 		if (md->conf.textures[i].text_arr)
 			free(md->conf.textures[i].text_arr);
@@ -28,7 +28,7 @@ void	destroy_main_data(t_main_data *md)
 	if (md->wind.mlx)
 		destroy_window(md->wind);
 	free(md->pwd);
-	if(md->grid)
+	if (md->grid)
 		free_int_arr(md->grid, md->grid_size[0]);
 }
 
@@ -47,7 +47,7 @@ void	free_int_arr(int **arr, int height)
 
 void	free_map(t_map *map)
 {
-	t_map *temp;
+	t_map	*temp;
 
 	while (map)
 	{

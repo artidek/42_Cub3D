@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:04:22 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 10:44:44 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:50:44 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	render(int x, int y, t_main_data *md, int col)
 	md->wind.data[pix_addr] = col & 0xFF;
 	md->wind.data[pix_addr + 1] = (col >> 8) & 0xFF;
 	md->wind.data[pix_addr + 2] = (col >> 16) & 0xFF;
-	// if (md->wind.bpp == 32)
-	// 	md->wind.data[pix_addr + 3] = 0x00;
 }
 
 void	redisplay(t_main_data *md)
@@ -84,7 +82,6 @@ void	redisplay(t_main_data *md)
 	md->wind.img = mlx_new_image(md->wind.mlx, WIDTH, HEIGHT);
 	md->wind.data = mlx_get_data_addr(md->wind.img, &md->wind.bpp,
 			&md->wind.line_size, &md->wind.endian);
-	// draw_map(md);
 	draw_ceiling(md);
 	draw_floor(md);
 	cast_rays(md);

@@ -9,8 +9,7 @@ PRINTFPATH = ./libft/ft_printf
 MLXPATH = ./minilibx
 
 SRCS = $(SRCSPATH)/init_conf.c $(SRCSPATH)/conf_checkers.c $(SRCSPATH)/map_parser.c $(SRCSPATH)/path_parser.c $(SRCSPATH)/window.c \
-	   $(SRCSPATH)/mapper.c $(SRCSPATH)/motion.c $(SRCSPATH)/orientation.c $(SRCSPATH)/render.c  $(SRCSPATH)/collision_checker.c \
-	   $(SRCSPATH)/ray_caster.c $(SRCSPATH)/object_builder.c
+	   $(SRCSPATH)/motion.c $(SRCSPATH)/orientation.c $(SRCSPATH)/render.c $(SRCSPATH)/ray_caster.c $(SRCSPATH)/object_builder.c
 UTILS = $(UTILSPATH)/conf_helpers.c $(UTILSPATH)/gen_helpers.c $(UTILSPATH)/data_destroyers.c $(UTILSPATH)/data_initializers.c $(UTILSPATH)/data_helpers.c \
 		$(UTILSPATH)/map_utils.c  $(UTILSPATH)/math_helpers.c $(UTILSPATH)/grid.c $(UTILSPATH)/dda_helpers.c $(UTILSPATH)/border_parser.c
 GNL = $(GNLPATH)/get_next_line.c $(GNLPATH)/get_next_line_utils.c

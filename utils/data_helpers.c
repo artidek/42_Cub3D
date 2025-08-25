@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:24:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 10:56:34 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:35:19 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	valid_path(char *path, char *dir)
 	free(full_path);
 	if (fd < 0)
 	{
-		printf("file doesn't exist or invalid permission\n");
+		ft_printf("file doesn't exist or invalid permission\n");
 		free_arr(splited);
 		return (fd);
 	}
@@ -73,7 +73,7 @@ int	*init_text_arr(int fd, int width, int height)
 {
 	int		i;
 	int		j;
-	int	rgb[3];
+	int		rgb[3];
 	int		*ret;
 	char	*line;
 
@@ -98,8 +98,8 @@ int	*init_text_arr(int fd, int width, int height)
 
 int	valid_texture(int fd, int width, int height)
 {
-	int count;
-	char *line;
+	int		count;
+	char	*line;
 
 	skip_line(fd, 1);
 	count = 0;
@@ -112,7 +112,7 @@ int	valid_texture(int fd, int width, int height)
 	}
 	if (count != height * width * 3)
 	{
-		printf("invalid or corrupted texture\n");
+		ft_printf("invalid or corrupted texture\n");
 		close(fd);
 		return (0);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_builder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:22:59 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 23:56:41 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:55:41 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	draw_object(t_main_data *md)
 		md->tex_y = (int)tex_pos & (md->conf.textures[NO].height - 1);
 		tex_pos += step;
 		texture = get_texture(md);
-		color = md->conf.textures[texture].text_arr[md->conf.textures[texture].width
-			* md->tex_y + md->tex_x];
+		color = md->conf.textures[texture].text_arr[md->conf.textures[texture]
+			.width * md->tex_y + md->tex_x];
 		if (md->side == 1)
 			color = (color >> 1) & 8355711;
 		render(md->position.wall_x, md->draw_start, md, color);

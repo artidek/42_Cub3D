@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 21:59:55 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:04:28 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,13 @@
 
 # define M_PI 3.14159265358979323846
 # define MAP_SYMB "NWSE01 	"
-# define CONFIGS                                \
-	(char *[])                                 \
-	{                                          \
-		"NO", "SO", "EA", "WE", "F", "C", NULL \
-	}
-# define RAY_COLOR \
-	(int[])       \
-	{             \
-		0, 255, 0 \
-	}
 # define HEIGHT 768
 # define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define R_SPEED (2.5 * (1.0 / 90.0))
+# define R_SPEED 0.027777778 //result of calculation 2.0 * (1 / 90) where to are deegress and 1 / 90 is a value of 1 degree in coord
 # define SPEED 0.15
 
-typedef enum
+typedef enum e_keys
 {
 	W = 119,
 	S = 115,
@@ -48,7 +38,15 @@ typedef enum
 	D = 100,
 	LEFT = 65361,
 	RIGHT = 65363
-}						key_values;
+}						t_key_values;
+
+typedef enum e_type
+{
+	NO,
+	SO,
+	EA,
+	WE
+}						t_type;
 
 typedef struct s_window
 {
@@ -72,13 +70,7 @@ typedef struct s_map
 
 typedef struct s_texture
 {
-	enum
-	{
-		NO,
-		SO,
-		EA,
-		WE
-	} type;
+	enum e_type			type;
 	int					width;
 	int					height;
 	int					*text_arr;
@@ -172,10 +164,6 @@ unsigned int			color(int color[3]);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
 void					get_grid_coord(t_main_data *md);
-void					left_collision(t_main_data *md, float dx);
-void					right_collision(t_main_data *md, float dx);
-void					forward_collision(t_main_data *md, float dy);
-void					backward_collision(t_main_data *md, float dy);
 void					parse_path(t_map *y, int x);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
@@ -203,14 +191,6 @@ void					cast_rays(t_main_data *md);
 void					draw_object(t_main_data *md);
 void					get_delta_dist(t_main_data *md);
 void					check_walls(t_map *map, int i);
-float					ray_forward(t_main_data *md, t_map **row, float pos_y,
-							float ray_dy);
-float					ray_back(t_main_data *md, t_map **row, float pos_y,
-							float ray_dy);
-float					ray_left(t_main_data *md, int *col_index, float pos_x,
-							float dx);
-float					ray_right(t_main_data *md, int *col_index, float pos_x,
-							float dx);
 long long int			ft_atoil(const char *str);
 int						*init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);

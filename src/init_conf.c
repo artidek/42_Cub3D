@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/23 15:12:43 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:44:54 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ static void	read_file(t_main_data *md, int fd)
 		return ;
 	while (line)
 	{
-			if (!check_line(line, md, fd))
-			{
-				free(line);
-				return ;
-			}
+		if (!check_line(line, md, fd))
+		{
+			free(line);
+			return ;
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -74,7 +74,7 @@ static void	read_file(t_main_data *md, int fd)
 
 int	init_configs(t_main_data *md, char *conf_path)
 {
-	int fd;
+	int	fd;
 
 	init_data(md);
 	fd = open(conf_path, O_RDONLY);
@@ -87,7 +87,7 @@ int	init_configs(t_main_data *md, char *conf_path)
 	if (invalid_config(md))
 	{
 		ft_printf("invalid config\n");
-		return(0);
+		return (0);
 	}
 	if (!check_map(md))
 	{

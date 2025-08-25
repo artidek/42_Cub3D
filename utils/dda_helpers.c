@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   dda_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:52:59 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 10:06:36 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:37:14 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void get_grid_coord(t_main_data *md)
+void	get_grid_coord(t_main_data *md)
 {
 	md->pos_x = md->position.col;
 	md->pos_y = md->position.row->row_index;
 }
 
-void get_delta_dist(t_main_data *md)
+void	get_delta_dist(t_main_data *md)
 {
 	if (md->ray_dirx == 0)
 		md->delta_dist_x = 1e30;
@@ -27,7 +27,7 @@ void get_delta_dist(t_main_data *md)
 	if (md->ray_diry == 0)
 		md->delta_dist_y = 1e30;
 	else
-		md->delta_dist_y = fabs(1/ md->ray_diry);
+		md->delta_dist_y = fabs(1 / md->ray_diry);
 }
 
 int	collision(float ray_x, float ray_y, t_main_data *md)

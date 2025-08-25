@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/25 14:53:06 by aobshatk          #+#    #+#             */
+/*   Updated: 2025/08/25 14:53:23 by aobshatk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static int	valid_border(t_map *map)
 {
-	int	i;
-	t_map *temp;
+	int		i;
+	t_map	*temp;
 
 	temp = map;
-	while(temp)
+	while (temp)
 	{
 		i = 0;
-		while(temp->cols[i])
+		while (temp->cols[i])
 		{
 			if (temp->cols[i] == 'a')
 				return (0);
@@ -20,7 +32,7 @@ static int	valid_border(t_map *map)
 	return (1);
 }
 
-int valid_walls(t_map *map)
+int	valid_walls(t_map *map)
 {
 	check_walls(map, 0);
 	if (!valid_border(map))
@@ -30,9 +42,9 @@ int valid_walls(t_map *map)
 
 static int	path(t_main_data *md)
 {
-	t_map *y;
-	int	x;
-	char player;
+	t_map	*y;
+	int		x;
+	char	player;
 
 	if (!locate_player(md->map, &y, &x, &player))
 	{
@@ -44,7 +56,7 @@ static int	path(t_main_data *md)
 	md->position.orientation = player;
 	md->position.row = y;
 	md->position.col = x;
-	while(y->up)
+	while (y->up)
 		y = y->up;
 	if (no_path(y))
 	{
@@ -56,7 +68,7 @@ static int	path(t_main_data *md)
 
 int	check_map(t_main_data *md)
 {
-	t_map *temp;
+	t_map	*temp;
 
 	if (!valid_walls(md->map))
 	{
@@ -70,7 +82,7 @@ int	check_map(t_main_data *md)
 	}
 	md->grid_cell[0] = WIDTH / md->map->num_cols;
 	temp = md->map;
-	while(temp->down)
+	while (temp->down)
 		temp = temp->down;
 	md->grid_cell[1] = HEIGHT / (temp->row_index);
 	return (1);

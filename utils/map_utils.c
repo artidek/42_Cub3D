@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:13:01 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/24 20:51:56 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:33:24 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	locate_player(t_map *map, t_map **y, int *x, char *player)
 
 int	no_path(t_map *y)
 {
-	int i;
+	int	i;
 
 	while (y)
 	{

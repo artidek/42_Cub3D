@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   data_initializers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/23 15:12:34 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:29:43 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void add_to_md(t_main_data *md,char *type, int color_int[3])
+static void	add_to_md(t_main_data *md, char *type, int color_int[3])
 {
 	if (*type == 'F')
 		md->conf.floor_color = color(color_int);
@@ -23,7 +23,7 @@ static void add_to_md(t_main_data *md,char *type, int color_int[3])
 t_map	*new_node(char *cols)
 {
 	t_map	*node;
-	int	cols_count;
+	int		cols_count;
 
 	if (!cols)
 		return (NULL);
@@ -81,9 +81,9 @@ void	add_texture(t_main_data *md, char *path, int texture)
 
 void	add_color(char *type, char *color, t_main_data *md)
 {
-	int i;
-	int j;
-	char *color_val;
+	int		i;
+	int		j;
+	char	*color_val;
 
 	i = 0;
 	j = 0;
@@ -105,5 +105,5 @@ void	add_color(char *type, char *color, t_main_data *md)
 		if (color[i])
 			i++;
 	}
-	add_to_md(md,type, md->color_int);
+	add_to_md(md, type, md->color_int);
 }

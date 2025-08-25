@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:35:52 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 21:25:28 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:52:35 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	is_colors(char **colors)
 
 int	is_config(char *str)
 {
-	int	len_str;
-	int	len_conf;
-	int	i;
+	int		len_str;
+	int		len_conf;
+	int		i;
 	char	**conf;
 
 	len_str = ft_strlen(str);
 	i = 0;
-	conf = CONFIGS;
+	conf = (char *[]){"NO", "SO", "EA", "WE", "F", "C", NULL};
 	while (conf[i])
 	{
 		len_conf = ft_strlen(conf[i]);
@@ -80,9 +80,9 @@ int	is_map_symb(char symb)
 
 int	check_ext(char *file, char *ext)
 {
-	char **spl_pth;
-	char *trimmed;
-	int len;
+	char	**spl_pth;
+	char	*trimmed;
+	int		len;
 
 	trimmed = ft_strtrim(file, " ");
 	spl_pth = ft_split(trimmed, '.');
