@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 17:04:28 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:05:53 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define HEIGHT 768
 # define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define R_SPEED 0.027777778 //result of calculation 2.0 * (1 / 90) where to are deegress and 1 / 90 is a value of 1 degree in coord
+# define R_SPEED 0.027777778 //result of calculation 2.0 * (1 / 90) where 2.0 are deegress and 1 / 90 is a value of 1 degree in coord
 # define SPEED 0.15
 
 typedef enum e_keys
