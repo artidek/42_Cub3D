@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ray_caster.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 17:22:37 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 21:55:43 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:51:57 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static	void draw(t_main_data *md)
+static void	draw(t_main_data *md)
 {
 	md->line_height = (int)(HEIGHT / md->perp_wall_dist);
-	md->draw_start = - md->line_height / 2 + HEIGHT / 2;
+	md->draw_start = -md->line_height / 2 + HEIGHT / 2;
 	if (md->draw_start < 0)
 		md->draw_start = 0;
 	md->draw_end = md->line_height / 2 + HEIGHT / 2;
@@ -33,7 +33,7 @@ static void	distance(t_main_data *md)
 	draw(md);
 }
 
-static void move_ray(t_main_data *md)
+static void	move_ray(t_main_data *md)
 {
 	while (md->hit == 0)
 	{
@@ -86,7 +86,7 @@ static void	set_ray(t_main_data *md)
 
 void	cast_rays(t_main_data *md)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	md->tex_x = 0;

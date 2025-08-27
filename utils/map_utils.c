@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:13:01 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 20:19:06 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:33:24 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	valid_border(t_map *map, int i)
-{
-	if (i > 0 && map->cols[i - 1] == ' ' && map->cols[i] == '0')
-		return (0);
-	else if (i == 0 && map->cols[i] == '0')
-		return (0);
-	else if (map->cols[i + 1] && map->cols[i] == '0' && map->cols[i + 1] == ' ')
-		return (0);
-	else if (!map->cols[i + 1] && map->cols[i] == '0')
-		return (0);
-	else if ((!map->up && map->cols[i] == '0') || (!map->down
-			&& map->cols[i] == '0'))
-		return (0);
-	else if (map->up && map->up->cols[i] && map->cols[i]
-		&& map->up->cols[i] == ' ' && map->cols[i] == '0')
-		return (0);
-	else if (map->down && map->down->cols[i] && map->cols[i]
-		&& map->down->cols[i] == ' ' && map->cols[i] == '0')
-		return (0);
-	return (1);
-}
 
 int	check_row(char *row)
 {
@@ -88,9 +66,9 @@ int	locate_player(t_map *map, t_map **y, int *x, char *player)
 
 int	no_path(t_map *y)
 {
-	int i;
+	int	i;
 
-	while(y)
+	while (y)
 	{
 		i = 0;
 		while (y->cols[i])

@@ -1,10 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/25 14:53:06 by aobshatk          #+#    #+#             */
+/*   Updated: 2025/08/25 14:53:23 by aobshatk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
+
+static int	valid_border(t_map *map)
+{
+	int		i;
+	t_map	*temp;
+
+	temp = map;
+	while (temp)
+	{
+		i = 0;
+		while (temp->cols[i])
+		{
+			if (temp->cols[i] == 'a')
+				return (0);
+			i++;
+		}
+		temp = temp->down;
+	}
+	return (1);
+}
+
+int	valid_walls(t_map *map)
+{
+	check_walls(map, 0);
+	if (!valid_border(map))
+		return (0);
+	return (1);
+}
 
 static int	path(t_main_data *md)
 {
-	t_map *y;
-	int	x;
-	char player;
+	t_map	*y;
+	int		x;
+	char	player;
 
 	if (!locate_player(md->map, &y, &x, &player))
 	{
@@ -16,44 +56,21 @@ static int	path(t_main_data *md)
 	md->position.orientation = player;
 	md->position.row = y;
 	md->position.col = x;
-	while(y->up)
+	while (y->up)
 		y = y->up;
 	if (no_path(y))
 	{
-		ft_printf("No valid path, or one fo the path invalid\n");
+		ft_printf("No valid path, or one of the path invalid\n");
 		return (0);
-	}
-	return (1);
-}
-
-static int	check_walls(t_map *map)
-{
-	int	i;
-	t_map *temp;
-
-	temp = map;
-	while (temp)
-	{
-		i = 0;
-		while (temp->cols[i])
-		{
-			if (temp->cols[i] != ' ')
-			{
-				if(!valid_border(temp, i))
-					return (0);
-			}
-			i++;
-		}
-		temp = temp->down;
 	}
 	return (1);
 }
 
 int	check_map(t_main_data *md)
 {
-	t_map *temp;
+	t_map	*temp;
 
-	if (!check_walls(md->map))
+	if (!valid_walls(md->map))
 	{
 		ft_printf("cub3d map parser: unclosed walls\n");
 		return (0);
@@ -65,7 +82,7 @@ int	check_map(t_main_data *md)
 	}
 	md->grid_cell[0] = WIDTH / md->map->num_cols;
 	temp = md->map;
-	while(temp->down)
+	while (temp->down)
 		temp = temp->down;
 	md->grid_cell[1] = HEIGHT / (temp->row_index);
 	return (1);

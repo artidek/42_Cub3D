@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 14:15:19 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:46:21 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	*extract_directory(char **env)
 {
-	int	i;
-	char **splited;
+	int		i;
+	char	**splited;
 	char	*res;
 
 	i = 0;
@@ -33,9 +33,24 @@ static char	*extract_directory(char **env)
 	return (NULL);
 }
 
+static int	initialization(t_main_data *md, char *conf_file)
+{
+	if (!init_configs(md, conf_file))
+	{
+		destroy_main_data(md);
+		return (0);
+	}
+	if (!build_grid(md))
+	{
+		destroy_main_data(md);
+		return (0);
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv, char **env)
 {
-	t_main_data md;
+	t_main_data	md;
 
 	if (argc < 2 || argc > 2)
 	{
@@ -45,16 +60,8 @@ int	main(int argc, char **argv, char **env)
 	if (!check_ext(argv[1], "cub"))
 		return (1);
 	md.pwd = extract_directory(env);
-	if (!init_configs(&md, argv[1]))
-	{
-		destroy_main_data(&md);
-		return(1);
-	}
-	if (!build_grid(&md))
-	{
-		destroy_main_data(&md);
-		return(1);
-	}
+	if (!initialization(&md, argv[1]))
+		return (1);
 	if (!start_window(&md))
 	{
 		ft_printf("failed to start window\n");

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/25 14:45:38 by aobshatk          #+#    #+#             */
+/*   Updated: 2025/08/25 14:45:45 by aobshatk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	go_up(t_map *y, int x)
@@ -6,7 +18,7 @@ static void	go_up(t_map *y, int x)
 		parse_path(y, x);
 }
 
-static void go_down(t_map *y, int x)
+static void	go_down(t_map *y, int x)
 {
 	if (y && y->cols[x] && y->cols[x] == '0')
 		parse_path(y, x);

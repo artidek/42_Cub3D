@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/22 23:41:05 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:05:53 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,14 @@
 # include <math.h>
 
 # define M_PI 3.14159265358979323846
-# define MAP_SYMB "NWSE01 "
-# define CONFIGS                                \
-	(char *[])                                 \
-	{                                          \
-		"NO", "SO", "EA", "WE", "F", "C", NULL \
-	}
-# define RAY_COLOR \
-	(int[])       \
-	{             \
-		0, 255, 0 \
-	}
-# define HEIGHT 480
-# define WIDTH 640
+# define MAP_SYMB "NWSE01 	"
+# define HEIGHT 768
+# define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define R_SPEED (2.0 * M_PI / 180)
-# define SPEED 0.05
-#define EPSILON 0.0001
+# define R_SPEED 0.027777778 //result of calculation 2.0 * (1 / 90) where 2.0 are deegress and 1 / 90 is a value of 1 degree in coord
+# define SPEED 0.15
 
-typedef enum
+typedef enum e_keys
 {
 	W = 119,
 	S = 115,
@@ -49,7 +38,15 @@ typedef enum
 	D = 100,
 	LEFT = 65361,
 	RIGHT = 65363
-}						key_values;
+}						t_key_values;
+
+typedef enum e_type
+{
+	NO,
+	SO,
+	EA,
+	WE
+}						t_type;
 
 typedef struct s_window
 {
@@ -73,13 +70,7 @@ typedef struct s_map
 
 typedef struct s_texture
 {
-	enum
-	{
-		NO,
-		SO,
-		EA,
-		WE
-	} type;
+	enum e_type			type;
 	int					width;
 	int					height;
 	int					*text_arr;
@@ -110,7 +101,7 @@ typedef struct s_main_data
 	char				*pwd;
 	double				pos_x;
 	double				pos_y;
-	double			dir_x;
+	double				dir_x;
 	double				dir_y;
 	double				plane_x;
 	double				plane_y;
@@ -160,7 +151,6 @@ int						valid_path(char *path, char *dir);
 int						check_ext(char *file, char *ext);
 int						check_row(char *row);
 int						check_map(t_main_data *md);
-int						valid_border(t_map *map, int i);
 int						locate_player(t_map *map, t_map **y, int *x,
 							char *player);
 int						no_path(t_map *y);
@@ -169,18 +159,15 @@ int						build_grid(t_main_data *md);
 int						collision(float ray_x, float ray_y, t_main_data *md);
 int						cast_vert(t_main_data *md);
 int						cast_hor(t_main_data *md);
+int						valid_walls(t_map *map);
 unsigned int			color(int color[3]);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
 void					get_grid_coord(t_main_data *md);
-void					left_collision(t_main_data *md, float dx);
-void					right_collision(t_main_data *md, float dx);
-void					forward_collision(t_main_data *md, float dy);
-void					backward_collision(t_main_data *md, float dy);
 void					parse_path(t_map *y, int x);
 void					free_arr(char **arr);
 void					add_to_str(char **str_add, int size, char *str);
-void					skip_char(char *str, int *i, char c);
+void					skip_char(char *str, int *i, char *c);
 void					skip_line(int fd, int num_lines);
 void					get_size(int fd, int *width, int *height);
 void					add_node(t_map **map, t_map *node);
@@ -203,14 +190,7 @@ void					down_right(t_main_data *md, float cx, float cy);
 void					cast_rays(t_main_data *md);
 void					draw_object(t_main_data *md);
 void					get_delta_dist(t_main_data *md);
-float					ray_forward(t_main_data *md, t_map **row, float pos_y,
-							float ray_dy);
-float					ray_back(t_main_data *md, t_map **row, float pos_y,
-							float ray_dy);
-float					ray_left(t_main_data *md, int *col_index, float pos_x,
-							float dx);
-float					ray_right(t_main_data *md, int *col_index, float pos_x,
-							float dx);
+void					check_walls(t_map *map, int i);
 long long int			ft_atoil(const char *str);
 int						*init_text_arr(int fd, int width, int height);
 t_map					*new_node(char *cols);

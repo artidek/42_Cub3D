@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gen_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:39:54 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/09 14:24:04 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:34:09 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_arr(char **arr)
 
 int	arr_len(char **arr)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arr && arr[len])
@@ -53,10 +53,25 @@ void	add_to_str(char **str_add, int size, char *str)
 	free(temp);
 }
 
-void skip_char(char *str, int *i, char c)
+void	skip_char(char *str, int *i, char *c)
 {
-	while (str[*i] && str[*i] != c)
+	int	j;
+	int	len;
+
+	len = ft_strlen(c);
+	while (str[*i])
+	{
+		j = len - 1;
+		while (j >= 0)
+		{
+			if (str[*i] == c[j])
+				break ;
+			j--;
+		}
+		if (j < 0)
+			return ;
 		(*i)++;
+	}
 }
 
 long long int	ft_atoil(const char *str)

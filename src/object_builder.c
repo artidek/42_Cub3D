@@ -3,50 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   object_builder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:22:59 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/26 11:34:20 by apple            ###   ########.fr       */
+/*   Updated: 2025/08/26 15:45:27 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static void draw_ceiling(t_main_data *md)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < HEIGHT - md->draw_start)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			render(j, i, md, md->conf.ceiling_color);
-			j++;
-		}
-		i++;
-	}
-}
-
-static void draw_floor(t_main_data *md)
-{
-	int i;
-	int j;
-
-	i = HEIGHT;
-	while (i > md->draw_end)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			render(j, i, md, md->conf.floor_color);
-			j++;
-		}
-		i--;
-	}
-}
 
 static int	get_texture(t_main_data *md)
 {
@@ -97,14 +61,12 @@ void	draw_object(t_main_data *md)
 		md->tex_y = (int)tex_pos & (md->conf.textures[NO].height - 1);
 		tex_pos += step;
 		texture = get_texture(md);
-		color = md->conf.textures[texture].text_arr[md->conf.textures[texture].width
-			* md->tex_y + md->tex_x];
+		color = md->conf.textures[texture].text_arr[md->conf.textures[texture]
+			.width * md->tex_y + md->tex_x];
 		if (md->side == 1)
 			color = (color >> 1) & 8355711;
 		render(md->position.wall_x, md->draw_start, md, color);
 		md->draw_start += 1;
 	}
-	draw_ceiling(md);
-	draw_floor(md);
 	md->position.wall_x += 1;
 }
