@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:53:06 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 14:53:23 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 11:56:24 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	path(t_main_data *md)
 		ft_printf("Unable locate player\n");
 		return (0);
 	}
+	if (!player_pos(y, x))
+		return (0);
 	parse_path(y, x);
 	y->cols[x] = player;
 	md->position.orientation = player;
@@ -76,10 +78,7 @@ int	check_map(t_main_data *md)
 		return (0);
 	}
 	if (!path(md))
-	{
-		ft_printf("cub3d map parser: path validation failed\n");
 		return (0);
-	}
 	md->grid_cell[0] = WIDTH / md->map->num_cols;
 	temp = md->map;
 	while (temp->down)

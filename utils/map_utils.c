@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:13:01 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:33:24 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 11:48:13 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,29 @@ int	no_path(t_map *y)
 		y = y->down;
 	}
 	return (0);
+}
+
+int	player_pos(t_map *map, int x)
+{
+	int er_pos;
+
+	er_pos = 0;
+	if (!map->up)
+		er_pos = 1;
+	else if (!map->down)
+		er_pos = 1;
+	else if (x == 0)
+		er_pos = 1;
+	else if (x == map->num_cols - 2)
+		er_pos = 1;
+	else if (map->cols[x - 1] == ' ' || map->cols[x - 1] == '	')
+		er_pos = 1;
+	else if (x < map->num_cols - 2 && (map->cols[x + 1] == ' ' || map->cols[x + 1] == '	'))
+		er_pos = 1;
+	if (er_pos)
+	{
+		ft_printf("error: wrong player position\n");
+		return (0);
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 17:05:53 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 11:46:04 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define HEIGHT 768
 # define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define R_SPEED 0.027777778 //result of calculation 2.0 * (1 / 90) where 2.0 are deegress and 1 / 90 is a value of 1 degree in coord
+# define R_SPEED 0.027777778 // result of calculation 2.0 * (1/ 90) where 2.0 are deegress and 1 / 90 is a value of 1 degree in coord
 # define SPEED 0.15
 
 typedef enum e_keys
@@ -160,6 +160,7 @@ int						collision(float ray_x, float ray_y, t_main_data *md);
 int						cast_vert(t_main_data *md);
 int						cast_hor(t_main_data *md);
 int						valid_walls(t_map *map);
+int						player_pos(t_map *map, int x);
 unsigned int			color(int color[3]);
 float					get_x(t_main_data *md, int key);
 float					ft_round(float val);
