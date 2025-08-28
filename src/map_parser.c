@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:53:06 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 15:36:17 by apple            ###   ########.fr       */
+/*   Updated: 2025/08/28 16:13:52 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static int	path(t_main_data *md)
 	while (y->up)
 		y = y->up;
 	if (no_path(y))
-	{
-		ft_printf("Error: no valid path, or one of the path invalid\n");
 		return (0);
-	}
 	return (1);
 }
 

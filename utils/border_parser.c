@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   border_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 20:18:42 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:31:20 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 21:38:15 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	check_left(t_map *map, int i)
 			&& map->cols[i] == '0')
 			map->cols[i] = 'a';
 	}
-	if (i == 0 && map->cols[i] == 'a')
+	if (i == 0 && map->cols[i] == '0')
 		map->cols[i] = 'a';
 }
 
