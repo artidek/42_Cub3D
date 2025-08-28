@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:53:06 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 11:56:24 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:36:17 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ static int	path(t_main_data *md)
 	char	player;
 
 	if (!locate_player(md->map, &y, &x, &player))
-	{
-		ft_printf("Unable locate player\n");
 		return (0);
-	}
 	if (!player_pos(y, x))
 		return (0);
 	parse_path(y, x);
@@ -62,7 +59,7 @@ static int	path(t_main_data *md)
 		y = y->up;
 	if (no_path(y))
 	{
-		ft_printf("No valid path, or one of the path invalid\n");
+		ft_printf("Error: no valid path, or one of the path invalid\n");
 		return (0);
 	}
 	return (1);
@@ -73,10 +70,7 @@ int	check_map(t_main_data *md)
 	t_map	*temp;
 
 	if (!valid_walls(md->map))
-	{
-		ft_printf("cub3d map parser: unclosed walls\n");
 		return (0);
-	}
 	if (!path(md))
 		return (0);
 	md->grid_cell[0] = WIDTH / md->map->num_cols;

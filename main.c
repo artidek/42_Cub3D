@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:46:21 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:34:24 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv, char **env)
 
 	if (argc < 2 || argc > 2)
 	{
-		ft_printf("wrong number of arguments\n");
+		ft_printf("Error: wrong number of arguments\n");
 		return (1);
 	}
 	if (!check_ext(argv[1], "cub"))
@@ -64,7 +64,7 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	if (!start_window(&md))
 	{
-		ft_printf("failed to start window\n");
+		ft_printf("Error: failed to start window\n");
 		destroy_main_data(&md);
 		return (1);
 	}

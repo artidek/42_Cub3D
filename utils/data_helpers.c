@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:24:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:35:19 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:38:26 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	valid_path(char *path, char *dir)
 	free(full_path);
 	if (fd < 0)
 	{
-		ft_printf("file doesn't exist or invalid permission\n");
 		free_arr(splited);
 		return (fd);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:35:52 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 11:11:50 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:37:29 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ int	check_ext(char *file, char *ext)
 	{
 		free_arr(spl_pth);
 		free(trimmed);
-		ft_printf("wrong file extention\n");
+		ft_printf("Error: wrong file extention\n");
 		return (0);
 	}
 	if (ft_strncmp(spl_pth[len - 1], ext, 3) != 0)
 	{
 		free_arr(spl_pth);
 		free(trimmed);
-		ft_printf("wrong file extention\n");
+		ft_printf("Error: wrong file extention\n");
 		return (0);
 	}
 	free_arr(spl_pth);

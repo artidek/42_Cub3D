@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 14:44:54 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:35:14 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,18 @@ int	init_configs(t_main_data *md, char *conf_path)
 	fd = open(conf_path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("invalid path or file doesn't exist\n");
+		ft_printf("Error: invalid path or file doesn't exist\n");
 		return (0);
 	}
 	read_file(md, fd);
 	if (invalid_config(md))
 	{
-		ft_printf("invalid config\n");
+		ft_printf("Error: invalid config\n");
 		return (0);
 	}
 	if (!check_map(md))
 	{
-		ft_printf("invalid map\n");
+		ft_printf("Error: invalid map\n");
 		return (0);
 	}
 	close(fd);
