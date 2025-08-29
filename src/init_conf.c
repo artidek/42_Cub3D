@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 15:35:14 by apple            ###   ########.fr       */
+/*   Updated: 2025/08/29 11:36:58 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,24 @@ static void	init_data(t_main_data *md)
 	md->grid = NULL;
 }
 
-static void	read_file(t_main_data *md, int fd)
+static int	read_file(t_main_data *md, int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
 	if (!line)
-		return ;
+		return (0);
 	while (line)
 	{
 		if (!check_line(line, md, fd))
 		{
 			free(line);
-			return ;
+			return (0);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	return (1);
 }
 
 int	init_configs(t_main_data *md, char *conf_path)
@@ -83,7 +84,8 @@ int	init_configs(t_main_data *md, char *conf_path)
 		ft_printf("Error: invalid path or file doesn't exist\n");
 		return (0);
 	}
-	read_file(md, fd);
+	if (!read_file(md, fd))
+		return (0);
 	if (invalid_config(md))
 	{
 		ft_printf("Error: invalid config\n");

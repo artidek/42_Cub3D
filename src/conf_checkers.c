@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_checkers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:59:23 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:35:43 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,11 @@ int	check_line(char *line, t_main_data *md, int fd)
 		return (0);
 	while (line[i] && line[i] != ' ' && line[i] != '\n')
 	{
+		if (md->map != NULL)
+		{
+			printf("Error: invalid map\n");
+			return (0);
+		}
 		add_to_str(&check, 1, &line[i]);
 		i++;
 	}

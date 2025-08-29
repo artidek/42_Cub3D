@@ -1,6 +1,9 @@
 way to reproduce the bug: 
 
-0. ./cub3d configs/test.cub: should not execute as the order of the map is wrong. Map content must be at the end of the file
+ --------------------------------
+ --solved 0. ./cub3d configs/test.cub: should not execute as the order of the map is wrong. Map content must be at the end of the file
+ solved--
+ --------------------------------
 
  --------------------------------
  --solved 1. ./cub3d configs/invalid_maps/color_invalid_rgb.cub / color_missing_ceiling_rgb.cub / color_missing_floor_rgb.cub / color_missing.cub / color_none.cub / empty.cub / map_missing.cub / map_only.cub / map_too_small.cub / player_multiple.cub / player_none.cub / textures_missing.cub / textures_none.cub
@@ -11,14 +14,20 @@ way to reproduce the bug:
  solved--
  --------------------------------
 
-2. ./cub3d configs/invalid_maps/file_letter_end.cub: executes, but should not as map content must be the last in the map
+ --------------------------------
+ --solved2. ./cub3d configs/invalid_maps/file_letter_end.cub: executes, but should not as map content must be the last in the map
+ solved--
+ --------------------------------
 
  --------------------------------
  --solved 1. 3. ./cub3d configs/invalid_maps/filetype_missing, filetype_wrong.buc: "wrong file extension" (misses "Error" at the beginning)
  solved--
  --------------------------------
 
-4. ./cub3d configs/invalid_maps/map_first.cub / map_middle.cub: executes, but should not as map content should be at the end of the file, after textures and colors
+ --------------------------------
+ --solved 4. ./cub3d configs/invalid_maps/map_first.cub / map_middle.cub: executes, but should not as map content should be at the end of the file, after textures and colors
+ solved--
+ --------------------------------
 
  --------------------------------
  --solved 5. ./cub3d configs/invalid_maps/player_on_edge.cub: executes, but should not as map must be surrounded by walls and a player can't stay on the edge of the map
@@ -41,6 +50,9 @@ way to reproduce the bug:
  solved--
  --------------------------------
 
-9. ./cub3d configs/invalid_maps/wall_hole_west.cub: executes but should not as west wall is not closed (when trying to lead the player through the whole map, the program dropped. But seg. fault could happen because of virtual machine, which is a bit slow)
+ --------------------------------
+ --solved 9. ./cub3d configs/invalid_maps/wall_hole_west.cub: executes but should not as west wall is not closed (when trying to lead the player through the whole map, the program dropped. But seg. fault could happen because of virtual machine, which is a bit slow)
+ solved--
+ --------------------------------
 
 // should colors be able to display if they are separated by comma and space?
