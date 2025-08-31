@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_initializers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:29:43 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/08/31 19:52:36 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ void	add_texture(t_main_data *md, char *path, int texture)
 	get_size(fd, &width, &height);
 	if (!valid_texture(fd, width, height))
 		return ;
+	if (md->conf.textures[texture].text_arr)
+	{
+		free(md->conf.textures[texture].text_arr);
+		md->conf.textures[texture].text_arr = NULL;
+		return ;
+	}
 	fd = valid_path(path, md->pwd);
 	skip_line(fd, 4);
 	md->conf.textures[texture].text_arr = init_text_arr(fd, width, height);
