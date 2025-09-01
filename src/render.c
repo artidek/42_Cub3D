@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 09:04:22 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/26 15:44:34 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:50:53 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	draw_floor(t_main_data *md)
 	int	y;
 	int	pix_addr;
 
-	y = 0;
-	while (y < HEIGHT / 2)
+	y = HEIGHT / 2;
+	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
@@ -42,8 +42,8 @@ static void	draw_ceiling(t_main_data *md)
 	int	y;
 	int	pix_addr;
 
-	y = HEIGHT / 2;
-	while (y < HEIGHT)
+	y = 0;
+	while (y < HEIGHT / 2)
 	{
 		x = 0;
 		x = 0;
