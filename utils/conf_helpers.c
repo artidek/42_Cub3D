@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:35:52 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 15:37:29 by apple            ###   ########.fr       */
+/*   Updated: 2025/09/01 17:04:38 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_number(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != 10)
 			return (0);
 		i++;
 	}
@@ -35,7 +35,7 @@ int	is_colors(char **colors)
 	while (colors[i])
 	{
 		color = ft_atoil(colors[i]);
-		if (is_number(colors[i]) && (color < 0 || color > 255))
+		if (!is_number(colors[i]) || color < 0 || color > 255)
 			return (0);
 		i++;
 	}
