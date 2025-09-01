@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_checkers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/29 11:35:43 by apple            ###   ########.fr       */
+/*   Updated: 2025/09/01 16:22:32 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	check_line(char *line, t_main_data *md, int fd)
 	check = NULL;
 	skip_char(line, &i, " 	");
 	if (!line[i])
-		return (0);
+		return (0);	
 	while (line[i] && line[i] != ' ' && line[i] != '\n')
 	{
 		if (md->map != NULL)
@@ -137,6 +137,7 @@ int	check_line(char *line, t_main_data *md, int fd)
 	}
 	if (!is_conf(check, line, md, fd))
 	{
+		printf("Error: invalid config\n");
 		free(check);
 		return (0);
 	}

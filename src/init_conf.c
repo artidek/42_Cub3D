@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/29 11:36:58 by apple            ###   ########.fr       */
+/*   Updated: 2025/09/01 16:27:40 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ static int	read_file(t_main_data *md, int fd)
 
 	line = get_next_line(fd);
 	if (!line)
-		return (0);
+	{
+		printf("Error: empty map\n");
+		return (0);	
+	}
 	while (line)
 	{
 		if (!check_line(line, md, fd))
