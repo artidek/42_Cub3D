@@ -6,7 +6,7 @@
 /*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/01 16:27:40 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:10:28 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ static int	read_file(t_main_data *md, int fd)
 
 	line = get_next_line(fd);
 	if (!line)
-	{
-		printf("Error: empty map\n");
 		return (0);	
-	}
 	while (line)
 	{
 		if (!check_line(line, md, fd))
@@ -87,9 +84,7 @@ int	init_configs(t_main_data *md, char *conf_path)
 		ft_printf("Error: invalid path or file doesn't exist\n");
 		return (0);
 	}
-	if (!read_file(md, fd))
-		return (0);
-	if (invalid_config(md))
+	if (!read_file(md, fd) || invalid_config(md))
 	{
 		ft_printf("Error: invalid config\n");
 		return (0);
