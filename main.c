@@ -6,32 +6,11 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:12:38 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 13:49:00 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:58:28 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
-
-// static char	*extract_directory(char **env)
-// {
-// 	int		i;
-// 	char	**splited;
-// 	char	*res;
-
-// 	i = 0;
-// 	while (env[i])
-// 	{
-// 		if (ft_strncmp(env[i], "PWD", 3) == 0)
-// 		{
-// 			splited = ft_split(env[i], '=');
-// 			res = ft_strdup(splited[1]);
-// 			free_arr(splited);
-// 			return (res);
-// 		}
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
 
 static int	initialization(t_main_data *md, char *conf_file)
 {

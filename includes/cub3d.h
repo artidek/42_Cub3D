@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 13:51:36 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:15:28 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void					skip_line(int fd, int num_lines);
 void					get_size(int fd, int *width, int *height);
 void					add_node(t_map **map, t_map *node);
 void					add_texture(t_main_data *md, char *path, int texture);
-void					add_color(char *type, char *color, t_main_data *md);
+void					add_color(char *type, char **color, t_main_data *md);
 void					free_int_arr(int **arr, int height);
 void					free_map(t_map *map);
 void					destroy_main_data(t_main_data *md);

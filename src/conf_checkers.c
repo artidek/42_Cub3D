@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 13:35:51 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:07:06 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static int	is_f_c(char *str, char *line, t_main_data *md)
 		free_arr(colors);
 		return (0);
 	}
+	add_color(str, colors, md);
 	free_arr(colors);
-	add_color(str, line, md);
 	return (1);
 }
 

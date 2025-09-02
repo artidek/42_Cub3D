@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 13:18:35 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:34:05 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,31 +85,16 @@ void	add_texture(t_main_data *md, char *path, int texture)
 	close(fd);
 }
 
-void	add_color(char *type, char *color, t_main_data *md)
+void	add_color(char *type, char **colors, t_main_data *md)
 {
 	int		i;
-	int		j;
-	char	*color_val;
+
 
 	i = 0;
-	j = 0;
-	color_val = NULL;
-	while (color[i])
+	while (colors[i])
 	{
-		if (ft_isdigit(color[i]))
-		{
-			add_to_str(&color_val, 3, &color[i]);
-			if (type[0] == 'F')
-				md->color_int[j] = ft_atoi(color_val);
-			if (type[0] == 'C')
-				md->color_int[j] = ft_atoi(color_val);
-			j++;
-			free(color_val);
-			color_val = NULL;
-			i += 2;
-		}
-		if (color[i])
-			i++;
+		md->color_int[i] = ft_atoi(colors[i]);
+		i++;
 	}
 	add_to_md(md, type, md->color_int);
 }
