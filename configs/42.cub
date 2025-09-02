@@ -3,7 +3,7 @@ SO  ./textures/test_south.ppm
 WE  ./textures/test_west.ppm
 EA  ./textures/test_east.ppm
 
-F 225,100,0
+F 225,100,0 
 C 225,30,0
 
                1111111111                        11111111111111111111111111111111111111111111111

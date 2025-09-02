@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:35:52 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/01 17:04:38 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:16:07 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ static int	is_number(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]) && str[i] != 10)
+		if (str[i] != ' ' && str[i] != '	')
+		{
+			if (!ft_isdigit(str[i]) && str[i] != 10)
 			return (0);
+		}
 		i++;
 	}
 	return (1);

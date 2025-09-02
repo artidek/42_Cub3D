@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 11:46:04 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:39:52 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define HEIGHT 768
 # define WIDTH 1024
 # define NUM_RAYS WIDTH
-# define R_SPEED 0.027777778 // result of calculation 2.0 * (1/ 90) where 2.0 are deegress and 1 / 90 is a value of 1 degree in coord
+# define R_SPEED 0.027777778
 # define SPEED 0.15
 
 typedef enum e_keys
@@ -194,6 +194,7 @@ void					get_delta_dist(t_main_data *md);
 void					check_walls(t_map *map, int i);
 long long int			ft_atoil(const char *str);
 int						*init_text_arr(int fd, int width, int height);
+char					*get_color_vals(char *line);
 t_map					*new_node(char *cols);
 
 #endif

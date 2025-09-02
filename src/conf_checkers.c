@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_checkers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/01 17:10:41 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:27:12 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,13 @@ static int	is_text(char *str)
 
 static int	is_f_c(char *str, char *line, t_main_data *md)
 {
-	char	**splited;
+	char	*vals;
 	char	**colors;
 
 	if (!is_config(str))
 		return (0);
-	splited = ft_split(line, ' ');
-	if (arr_len(splited) < 2)
-	{
-		free_arr(splited);
-		return (0);
-	}
-	colors = ft_split(splited[1], ',');
-	free_arr(splited);
+	vals = get_color_vals(line);
+	colors = ft_split(vals, ',');
 	if (arr_len(colors) != 3 || !is_colors(colors))
 	{
 		free_arr(colors);
