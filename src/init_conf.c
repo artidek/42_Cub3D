@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/01 17:10:28 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:19:03 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	init_data(t_main_data *md)
 	md->position.y = 0;
 	md->turn_key = 0;
 	md->grid = NULL;
+	md->pwd = ft_strdup(WIAM);
 }
 
 static int	read_file(t_main_data *md, int fd)

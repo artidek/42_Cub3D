@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:59:02 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 11:27:12 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:35:51 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static int	is_f_c(char *str, char *line, t_main_data *md)
 		return (0);
 	vals = get_color_vals(line);
 	colors = ft_split(vals, ',');
+	free(vals);
 	if (arr_len(colors) != 3 || !is_colors(colors))
 	{
 		free_arr(colors);

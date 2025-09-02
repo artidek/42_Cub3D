@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:09:13 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 11:39:52 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:51:36 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define NUM_RAYS WIDTH
 # define R_SPEED 0.027777778
 # define SPEED 0.15
+
+# ifndef WIAM
+#  define WIAM "empty"
+# endif
 
 typedef enum e_keys
 {
@@ -195,6 +199,8 @@ void					check_walls(t_map *map, int i);
 long long int			ft_atoil(const char *str);
 int						*init_text_arr(int fd, int width, int height);
 char					*get_color_vals(char *line);
+char					*make_absolut(char *path);
+char					*get_conf_path(char *conf_file);
 t_map					*new_node(char *cols);
 
 #endif

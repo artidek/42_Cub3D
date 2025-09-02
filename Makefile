@@ -24,10 +24,11 @@ SRCOBJS = $(SRCS:.c=.o)
 UTILSOBJS = $(UTILS:.c=.o)
 GNLOBJS = $(GNL:.c=.o)
 OBJS =$(GNLOBJS) $(UTILSOBJS) $(SRCOBJS)
+PTH:= $(shell pwd)
 
 
 %.o: %.c
-		@$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(CFLAGS) -DWIAM=\"$(PTH)\" -c $< -o $@
 
 $(NAME): main.c $(LIBR)
 		@$(CC) $(CFLAGS) $(LDFLAGS) main.c $(LIBR) -o $(NAME) $(LDLIBS)

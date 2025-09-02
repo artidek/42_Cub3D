@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:24:36 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/28 15:38:26 by apple            ###   ########.fr       */
+/*   Updated: 2025/09/02 13:33:40 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@ int	valid_path(char *path, char *dir)
 	int		fd;
 	char	**splited;
 	char	*full_path;
+	char	*trimmed;
 
 	splited = ft_split(path, ' ');
 	splited[1][ft_strlen(splited[1]) - 1] = 0;
-	full_path = ft_strjoin(dir, &splited[1][1]);
+	trimmed = ft_strtrim(splited[1], " 	.\n");
+	if (trimmed[0] != '/')
+		trimmed = make_absolut(trimmed);
+	full_path = ft_strjoin(dir, trimmed);
 	fd = open(full_path, O_RDWR);
 	free(full_path);
+	free(trimmed);
 	if (fd < 0)
 	{
 		free_arr(splited);

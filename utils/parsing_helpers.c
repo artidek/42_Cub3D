@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:30:10 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 11:40:29 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:52:23 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,25 @@ char	*get_color_vals(char *line)
 		i++;
 	}
 	free(trimmed);
+	return (res);
+}
+
+char	*make_absolut(char *path)
+{
+	char	*res;
+
+	res = ft_strjoin("/", path);
+	free(path);
+	return (res);
+}
+
+char	*get_conf_path(char *conf_file)
+{
+	char	*res;
+	char	*temp;
+
+	temp = ft_strjoin(WIAM, "/configs/");
+	res = ft_strjoin(temp, conf_file);
+	free(temp);
 	return (res);
 }

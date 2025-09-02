@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_destroyers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:52:19 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/08/25 16:30:15 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:19:37 by aobshatk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	destroy_main_data(t_main_data *md)
 		free_map(md->map);
 	if (md->wind.mlx)
 		destroy_window(md->wind);
-	free(md->pwd);
 	if (md->grid)
 		free_int_arr(md->grid, md->grid_size[0]);
+	free(md->pwd);
 }
 
 void	free_int_arr(int **arr, int height)

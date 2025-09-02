@@ -1,7 +1,7 @@
 NO  ./textures/test_north.ppm
 SO  ./textures/test_south.ppm
 WE  ./textures/test_west.ppm
-EA  ./textures/test_east.ppm
+EA  textures/test_east.ppm
 
 F 225,100,0 
 C 225,30,0
