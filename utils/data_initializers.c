@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_initializers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:01:40 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 17:34:05 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:15:44 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	add_texture(t_main_data *md, char *path, int texture)
 void	add_color(char *type, char **colors, t_main_data *md)
 {
 	int		i;
-
 
 	i = 0;
 	while (colors[i])

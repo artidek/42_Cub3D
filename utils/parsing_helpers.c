@@ -6,7 +6,7 @@
 /*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:30:10 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 13:52:23 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:18:45 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*get_color_vals(char *line)
 {
-	int i;
-	char *trimmed;
-	char *res;
+	int		i;
+	char	*trimmed;
+	char	*res;
 
 	i = 1;
 	res = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:35:52 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 17:03:41 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:16:02 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	is_number(char *str)
 		if (str[i] != ' ' && str[i] != '	')
 		{
 			if (!ft_isdigit(str[i]) && str[i] != 10)
-			return (0);
+				return (0);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:13:01 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/01 16:30:58 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:17:23 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	no_path(t_map *y)
 
 int	player_pos(t_map *map, int x)
 {
-	int er_pos;
+	int	er_pos;
 
 	er_pos = 0;
 	if (!map->up)
@@ -97,7 +97,8 @@ int	player_pos(t_map *map, int x)
 		er_pos = 1;
 	else if (map->cols[x - 1] == ' ' || map->cols[x - 1] == '	')
 		er_pos = 1;
-	else if (x < map->num_cols - 2 && (map->cols[x + 1] == ' ' || map->cols[x + 1] == '	'))
+	else if (x < map->num_cols - 2
+		&& (map->cols[x + 1] == ' ' || map->cols[x + 1] == '	'))
 		er_pos = 1;
 	if (er_pos)
 		return (0);

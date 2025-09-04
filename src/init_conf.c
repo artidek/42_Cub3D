@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aobshatk <aobshatk@42warsaw.pl>            +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:31:05 by aobshatk          #+#    #+#             */
-/*   Updated: 2025/09/02 13:19:03 by aobshatk         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:15:23 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	read_file(t_main_data *md, int fd)
 
 	line = get_next_line(fd);
 	if (!line)
-		return (0);	
+		return (0);
 	while (line)
 	{
 		if (!check_line(line, md, fd))
